@@ -83,7 +83,7 @@ const HowItWorks: React.FC = () => {
                 className="h-full flex flex-col p-8"
                 highlighted={index === 1}
               >
-                <div className="text-center mb-6">{step.icon}</div>
+                <div className="flex justify-center mb-6">{step.icon}</div>
                 <h3 className="text-lg font-semibold text-white mb-4 text-center">
                   {step.title}
                 </h3>
