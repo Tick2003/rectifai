@@ -198,8 +198,12 @@ const Hero: React.FC = () => {
                   {displayText}
                 </span>
                 <span 
-                  className={`inline-block w-1 h-[0.8em] bg-white ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
-                  style={{ verticalAlign: 'text-top' }}
+                  className={`inline-block w-1 bg-white ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
+                  style={{ 
+                    height: '0.7em',
+                    verticalAlign: 'baseline',
+                    marginBottom: '0.1em'
+                  }}
                 />
               </span>
             </span>
