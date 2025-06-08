@@ -57,10 +57,10 @@ const Pricing: React.FC = () => {
       
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold font-display text-white mb-4">
             Simple, Transparent Pricing
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto text-sm">
             Choose the perfect plan for your AI correction needs
           </p>
         </div>
@@ -76,20 +76,20 @@ const Pricing: React.FC = () => {
                 highlighted={plan.highlighted}
               >
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
                   <div className="flex items-baseline mb-4">
-                    <span className="text-4xl font-bold text-white">{plan.price}</span>
-                    <span className="text-gray-400 ml-2">/{plan.period}</span>
+                    <span className="text-3xl font-bold text-white">{plan.price}</span>
+                    <span className="text-gray-400 ml-2 text-sm">/{plan.period}</span>
                   </div>
-                  <p className="text-gray-400">{plan.description}</p>
+                  <p className="text-gray-400 text-sm">{plan.description}</p>
                 </div>
                 
                 <div className="flex-grow">
                   <ul className="space-y-4 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <Check className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-300">{feature}</span>
+                        <Check className="w-4 h-4 text-blue-400 mr-3 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-300 text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>

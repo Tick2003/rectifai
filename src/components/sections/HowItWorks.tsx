@@ -5,21 +5,21 @@ import Card from '../ui/Card';
 const HowItWorks: React.FC = () => {
   const steps = [
     {
-      icon: <AlertCircle className="w-8 h-8 text-red-400" />,
+      icon: <AlertCircle className="w-7 h-7 text-red-400" />,
       title: "AI Output Has Issues",
       description: "Grammar, logic, facts, style, tone, structure, clarity, or any other problems across any domain.",
       color: "from-red-500/10 to-transparent",
       examples: ["Grammar errors", "Factual mistakes", "Poor structure", "Wrong tone"]
     },
     {
-      icon: <Brain className="w-8 h-8 text-blue-400" />,
+      icon: <Brain className="w-7 h-7 text-blue-400" />,
       title: "RectifAI Analyzes Everything",
       description: "Our universal AI scans for all possible improvements across language, logic, facts, style, and context.",
       color: "from-blue-500/10 to-transparent",
       examples: ["Language analysis", "Fact checking", "Style optimization", "Context awareness"]
     },
     {
-      icon: <CheckCircle className="w-8 h-8 text-green-400" />,
+      icon: <CheckCircle className="w-7 h-7 text-green-400" />,
       title: "Perfect Results — Universally",
       description: "Get flawless output with every aspect improved: accuracy, clarity, professionalism, and impact.",
       color: "from-green-500/10 to-transparent",
@@ -28,10 +28,10 @@ const HowItWorks: React.FC = () => {
   ];
 
   const correctionTypes = [
-    { icon: <Sparkles className="w-5 h-5 text-purple-400" />, name: "Language & Style", count: "15+" },
-    { icon: <Brain className="w-5 h-5 text-blue-400" />, name: "Logic & Facts", count: "12+" },
-    { icon: <Globe className="w-5 h-5 text-green-400" />, name: "Context & Culture", count: "8+" },
-    { icon: <Zap className="w-5 h-5 text-orange-400" />, name: "Professional & Technical", count: "20+" }
+    { icon: <Sparkles className="w-4 h-4 text-purple-400" />, name: "Language & Style", count: "15+" },
+    { icon: <Brain className="w-4 h-4 text-blue-400" />, name: "Logic & Facts", count: "12+" },
+    { icon: <Globe className="w-4 h-4 text-green-400" />, name: "Context & Culture", count: "8+" },
+    { icon: <Zap className="w-4 h-4 text-orange-400" />, name: "Professional & Technical", count: "20+" }
   ];
 
   const universalCoverageItems = [
@@ -54,10 +54,10 @@ const HowItWorks: React.FC = () => {
       
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold font-display text-white mb-4">
             Universal AI Correction Process
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-sm">
             Experience comprehensive AI error correction that fixes everything in three intelligent steps
           </p>
           
@@ -68,7 +68,7 @@ const HowItWorks: React.FC = () => {
                 <div className="flex items-center justify-center mb-2">
                   {type.icon}
                 </div>
-                <p className="text-gray-300 text-sm font-medium">{type.name}</p>
+                <p className="text-gray-300 text-xs font-medium">{type.name}</p>
                 <p className="text-gray-500 text-xs">{type.count} fixes</p>
               </div>
             ))}
@@ -84,16 +84,16 @@ const HowItWorks: React.FC = () => {
                 highlighted={index === 1}
               >
                 <div className="text-center mb-6">{step.icon}</div>
-                <h3 className="text-xl font-semibold text-white mb-4 text-center">
+                <h3 className="text-lg font-semibold text-white mb-4 text-center">
                   {step.title}
                 </h3>
-                <p className="text-gray-400 text-center mb-6">
+                <p className="text-gray-400 text-center mb-6 text-sm">
                   {step.description}
                 </p>
                 
                 {/* Examples */}
                 <div className="mt-auto">
-                  <p className="text-gray-500 text-sm mb-3 text-center">Examples:</p>
+                  <p className="text-gray-500 text-xs mb-3 text-center">Examples:</p>
                   <div className="grid grid-cols-2 gap-2">
                     {step.examples.map((example, exampleIndex) => (
                       <div key={exampleIndex} className="bg-gray-800/50 rounded px-2 py-1 text-xs text-gray-400 text-center">
@@ -117,12 +117,12 @@ const HowItWorks: React.FC = () => {
         {/* Universal Coverage */}
         <div className="mt-16 text-center">
           <div className="bg-gray-900/50 rounded-2xl p-8 border border-gray-800 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
+            <h3 className="text-xl font-bold text-white mb-4">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Universal Coverage
               </span>
             </h3>
-            <p className="text-gray-400 mb-6">
+            <p className="text-gray-400 mb-6 text-sm">
               RectifAI fixes everything across all domains, languages, and contexts
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
@@ -205,7 +205,7 @@ const HowItWorks: React.FC = () => {
                   `} />
                   
                   {/* Text Content */}
-                  <span className="relative z-10 font-medium">
+                  <span className="relative z-10 font-medium text-xs">
                     {area.name}
                   </span>
                   

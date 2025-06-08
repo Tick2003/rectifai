@@ -26,20 +26,20 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
-          <span className="text-white text-2xl font-bold font-display">
+          <span className="text-white text-xl font-bold font-display">
             Rectif<span className="text-blue-400">AI</span>
           </span>
         </div>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors">
+          <a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors text-sm">
             How It Works
           </a>
-          <a href="#simulator" className="text-gray-300 hover:text-white transition-colors">
+          <a href="#simulator" className="text-gray-300 hover:text-white transition-colors text-sm">
             Try It
           </a>
-          <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">
+          <a href="#pricing" className="text-gray-300 hover:text-white transition-colors text-sm">
             Pricing
           </a>
           <Button variant="primary" size="sm">
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
       
@@ -63,21 +63,21 @@ const Header: React.FC = () => {
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <a 
               href="#how-it-works" 
-              className="text-gray-300 hover:text-white py-2"
+              className="text-gray-300 hover:text-white py-2 text-sm"
               onClick={() => setIsMenuOpen(false)}
             >
               How It Works
             </a>
             <a 
               href="#simulator" 
-              className="text-gray-300 hover:text-white py-2"
+              className="text-gray-300 hover:text-white py-2 text-sm"
               onClick={() => setIsMenuOpen(false)}
             >
               Try It
             </a>
             <a 
               href="#pricing" 
-              className="text-gray-300 hover:text-white py-2"
+              className="text-gray-300 hover:text-white py-2 text-sm"
               onClick={() => setIsMenuOpen(false)}
             >
               Pricing

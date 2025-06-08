@@ -7,46 +7,46 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="md:col-span-2">
-            <h3 className="text-white text-2xl font-bold font-display mb-4">
+            <h3 className="text-white text-xl font-bold font-display mb-4">
               Rectif<span className="text-blue-400">AI</span>
             </h3>
-            <p className="text-gray-400 max-w-md">
+            <p className="text-gray-400 max-w-md text-sm">
               Real-time invisible correction for broken AI outputs. 
               Make AI reliable with our cutting-edge correction technology.
             </p>
             <div className="flex space-x-4 mt-6">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Github size={20} />
+                <Github size={18} />
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter size={20} />
+                <Twitter size={18} />
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Mail size={20} />
+                <Mail size={18} />
               </a>
             </div>
           </div>
           
           <div>
-            <h4 className="text-white font-semibold mb-4">Links</h4>
+            <h4 className="text-white font-semibold mb-4 text-sm">Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   About
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Privacy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Terms
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Contact
                 </a>
               </li>
@@ -54,25 +54,25 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <h4 className="text-white font-semibold mb-4 text-sm">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Documentation
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   API
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Support
                 </a>
               </li>
@@ -81,10 +81,10 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-gray-800 pt-8 text-center">
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 text-xs">
             Built on Bolt. Powered by OpenAI, Supabase, ElevenLabs.
           </p>
-          <p className="text-gray-500 text-sm mt-2">
+          <p className="text-gray-500 text-xs mt-2">
             &copy; {new Date().getFullYear()} RectifAI. All rights reserved.
           </p>
         </div>

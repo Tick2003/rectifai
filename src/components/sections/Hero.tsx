@@ -185,11 +185,11 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center bg-gray-800/80 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm border border-gray-700">
-            <Globe size={16} className="text-blue-400 mr-2" />
-            <span className="text-gray-300 text-sm">Universal AI Correction Technology</span>
+            <Globe size={14} className="text-blue-400 mr-2" />
+            <span className="text-gray-300 text-xs">Universal AI Correction Technology</span>
           </div>
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display text-white mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-6 leading-tight">
             When AI Fails <span className="text-red-400">Anything</span>, <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-green-400">
               RectifAI Fixes{' '}
@@ -209,7 +209,7 @@ const Hero: React.FC = () => {
             </span>
           </h1>
           
-          <p className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
             The world's most comprehensive AI correction system. We fix grammar, logic, facts, 
             style, tone, structure, clarity, professionalism, and everything else across all domains.
           </p>
@@ -229,10 +229,10 @@ const Hero: React.FC = () => {
                   `}
                 >
                   <IconComponent 
-                    size={20} 
+                    size={18} 
                     className={`${getColorClasses(type.color, 'text')} mr-2 transition-all duration-300 group-hover:scale-110`} 
                   />
-                  <span className="text-gray-300 text-sm group-hover:text-white transition-colors duration-300">
+                  <span className="text-gray-300 text-xs group-hover:text-white transition-colors duration-300">
                     {type.name}
                   </span>
                 </button>
@@ -247,7 +247,7 @@ const Hero: React.FC = () => {
               onClick={scrollToSimulator}
             >
               <span>Fix Everything Now</span>
-              <ArrowRight size={18} className="ml-2 inline transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={16} className="ml-2 inline transition-transform group-hover:translate-x-1" />
             </Button>
             <Button 
               variant="secondary" 
@@ -267,7 +267,7 @@ const Hero: React.FC = () => {
             ].map((domain) => (
               <div key={domain.name} className="flex flex-col items-center">
                 <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">Fixes</p>
-                <p className="text-gray-300 font-medium">{domain.name}</p>
+                <p className="text-gray-300 font-medium text-sm">{domain.name}</p>
                 <p className="text-gray-500 text-xs mt-1">{domain.desc}</p>
               </div>
             ))}
@@ -291,31 +291,31 @@ const Hero: React.FC = () => {
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center">
                       <div className={`p-3 rounded-lg ${getColorClasses(badge.color, 'bg')}/20 border ${getColorClasses(badge.color, 'border')}/30 mr-4`}>
-                        <IconComponent size={24} className={getColorClasses(badge.color, 'text')} />
+                        <IconComponent size={22} className={getColorClasses(badge.color, 'text')} />
                       </div>
-                      <h3 className="text-2xl font-bold text-white">{badge.title}</h3>
+                      <h3 className="text-xl font-bold text-white">{badge.title}</h3>
                     </div>
                     <button
                       onClick={() => setSelectedBadge(null)}
                       className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-lg"
                     >
-                      <X size={20} />
+                      <X size={18} />
                     </button>
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-gray-300 mb-6 leading-relaxed text-sm">
                     {badge.description}
                   </p>
 
                   {/* Features */}
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-white mb-4">Key Capabilities:</h4>
+                    <h4 className="text-base font-semibold text-white mb-4">Key Capabilities:</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {badge.features.map((feature, index) => (
                         <div key={index} className="flex items-start">
                           <div className={`w-2 h-2 rounded-full ${getColorClasses(badge.color, 'bg')} mt-2 mr-3 flex-shrink-0`} />
-                          <span className="text-gray-300 text-sm">{feature}</span>
+                          <span className="text-gray-300 text-xs">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -323,11 +323,11 @@ const Hero: React.FC = () => {
 
                   {/* Examples */}
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-white mb-4">Example Correction:</h4>
+                    <h4 className="text-base font-semibold text-white mb-4">Example Correction:</h4>
                     <div className="space-y-4">
                       {badge.examples.map((example, index) => (
                         <div key={index} className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
-                          <p className="text-gray-300 text-sm leading-relaxed">{example}</p>
+                          <p className="text-gray-300 text-xs leading-relaxed">{example}</p>
                         </div>
                       ))}
                     </div>
@@ -343,7 +343,7 @@ const Hero: React.FC = () => {
                       className="group"
                     >
                       <span>Try {badge.name} Correction</span>
-                      <ArrowRight size={16} className="ml-2 inline transition-transform group-hover:translate-x-1" />
+                      <ArrowRight size={14} className="ml-2 inline transition-transform group-hover:translate-x-1" />
                     </Button>
                   </div>
                 </div>

@@ -118,10 +118,10 @@ const InputSimulator: React.FC = () => {
     <section id="simulator" className="py-24 bg-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold font-display text-white mb-4">
             Try Universal RectifAI Now
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-sm">
             Experience comprehensive AI correction that fixes everything - grammar, logic, facts, style, tone, structure, and more.
           </p>
           
@@ -129,8 +129,8 @@ const InputSimulator: React.FC = () => {
           {!isGeminiConfigured && (
             <div className="mb-6 bg-yellow-900/20 border border-yellow-700 rounded-lg p-4 max-w-2xl mx-auto">
               <div className="flex items-center justify-center text-yellow-400">
-                <AlertTriangle size={16} className="mr-2" />
-                <span className="text-sm">
+                <AlertTriangle size={14} className="mr-2" />
+                <span className="text-xs">
                   Gemini API not configured - using basic correction mode
                 </span>
               </div>
@@ -140,16 +140,16 @@ const InputSimulator: React.FC = () => {
           {/* Correction Capabilities */}
           <div className="flex justify-center gap-6 mb-8">
             <div className="flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800">
-              <Brain size={16} className="text-blue-400 mr-2" />
-              <span className="text-gray-300 text-sm">Logic & Facts</span>
+              <Brain size={14} className="text-blue-400 mr-2" />
+              <span className="text-gray-300 text-xs">Logic & Facts</span>
             </div>
             <div className="flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800">
-              <Zap size={16} className="text-purple-400 mr-2" />
-              <span className="text-gray-300 text-sm">Style & Tone</span>
+              <Zap size={14} className="text-purple-400 mr-2" />
+              <span className="text-gray-300 text-xs">Style & Tone</span>
             </div>
             <div className="flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800">
-              <Globe size={16} className="text-green-400 mr-2" />
-              <span className="text-gray-300 text-sm">Context & Culture</span>
+              <Globe size={14} className="text-green-400 mr-2" />
+              <span className="text-gray-300 text-xs">Context & Culture</span>
             </div>
           </div>
         </div>
@@ -157,13 +157,13 @@ const InputSimulator: React.FC = () => {
         <div className="max-w-6xl mx-auto bg-gray-950 border border-gray-800 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(59,130,246,0.05)]">
           {/* Example Inputs */}
           <div className="mb-6">
-            <p className="text-gray-400 text-sm mb-3">Try these examples or paste your own content:</p>
+            <p className="text-gray-400 text-xs mb-3">Try these examples or paste your own content:</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {exampleInputs.map((example, index) => (
                 <button
                   key={index}
                   onClick={() => loadExample(example)}
-                  className="text-left bg-gray-900/50 border border-gray-800 rounded-lg p-3 text-gray-400 text-sm hover:bg-gray-800/50 transition-colors"
+                  className="text-left bg-gray-900/50 border border-gray-800 rounded-lg p-3 text-gray-400 text-xs hover:bg-gray-800/50 transition-colors"
                 >
                   {example.substring(0, 80)}...
                 </button>
@@ -174,18 +174,18 @@ const InputSimulator: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label htmlFor="input" className="text-gray-300 font-medium">
+                <label htmlFor="input" className="text-gray-300 font-medium text-sm">
                   Paste Any AI Output Here
                 </label>
                 {!input && (
-                  <span className="text-gray-500 text-sm">
+                  <span className="text-gray-500 text-xs">
                     Any content, any domain, any language
                   </span>
                 )}
               </div>
               <textarea
                 id="input"
-                className="w-full h-80 bg-gray-900 border border-gray-800 rounded-lg p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
+                className="w-full h-80 bg-gray-900 border border-gray-800 rounded-lg p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-sm"
                 placeholder="Paste any content here - writing, code, business documents, creative content, technical documentation, or anything else. RectifAI will fix everything that needs improvement."
                 value={input}
                 onChange={handleInputChange}
@@ -195,7 +195,7 @@ const InputSimulator: React.FC = () => {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
-                  <label htmlFor="output" className="text-gray-300 font-medium">
+                  <label htmlFor="output" className="text-gray-300 font-medium text-sm">
                     Universally Fixed Output
                   </label>
                   {output && (
@@ -206,10 +206,10 @@ const InputSimulator: React.FC = () => {
                         onMouseLeave={() => setShowTooltip(false)}
                         aria-label="Show correction info"
                       >
-                        <Ghost size={16} />
+                        <Ghost size={14} />
                       </button>
                       {showTooltip && correctionResult && (
-                        <div className="absolute left-full ml-2 top-0 w-72 bg-gray-900 border border-gray-700 rounded-md p-4 text-sm text-gray-300 z-10">
+                        <div className="absolute left-full ml-2 top-0 w-72 bg-gray-900 border border-gray-700 rounded-md p-4 text-xs text-gray-300 z-10">
                           <div className="mb-3">
                             <span className="font-medium">Confidence Score: </span>
                             <span className="text-blue-400">{Math.round(correctionResult.confidence * 100)}%</span>
@@ -234,12 +234,12 @@ const InputSimulator: React.FC = () => {
                   )}
                 </div>
               </div>
-              <div className="w-full h-80 bg-gray-900 border border-gray-800 rounded-lg p-4 text-white resize-none overflow-auto relative">
+              <div className="w-full h-80 bg-gray-900 border border-gray-800 rounded-lg p-4 text-white resize-none overflow-auto relative text-sm">
                 {!output && !isProcessing && !error && (
                   <div className="text-gray-500 flex items-start">
-                    <AlertCircle size={16} className="mr-2 mt-0.5 flex-shrink-0" />
+                    <AlertCircle size={14} className="mr-2 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="mb-2">Universally corrected output will appear here</p>
+                      <p className="mb-2 text-xs">Universally corrected output will appear here</p>
                       <p className="text-xs">Fixes: Grammar, Logic, Facts, Style, Tone, Structure, Clarity, and more</p>
                     </div>
                   </div>
@@ -248,7 +248,7 @@ const InputSimulator: React.FC = () => {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="animate-pulse flex flex-col items-center">
                       <div className="w-12 h-12 border-t-2 border-b-2 border-blue-400 rounded-full animate-spin mb-3"></div>
-                      <span className="text-gray-400 text-sm text-center">
+                      <span className="text-gray-400 text-xs text-center">
                         Analyzing and fixing everything...<br />
                         <span className="text-xs text-gray-500">Grammar • Logic • Facts • Style • Context</span>
                       </span>
@@ -257,10 +257,10 @@ const InputSimulator: React.FC = () => {
                 )}
                 {error && (
                   <div className="text-red-400 flex items-start">
-                    <AlertCircle size={16} className="mr-2 mt-0.5 flex-shrink-0" />
+                    <AlertCircle size={14} className="mr-2 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-medium mb-1">Error:</p>
-                      <p className="text-sm">{error}</p>
+                      <p className="font-medium mb-1 text-xs">Error:</p>
+                      <p className="text-xs">{error}</p>
                       {error.includes('API') && (
                         <p className="text-xs text-gray-500 mt-2">
                           Check your environment variables and API configuration
@@ -271,10 +271,10 @@ const InputSimulator: React.FC = () => {
                 )}
                 {output && !isProcessing && !error && (
                   <div className="space-y-4">
-                    <div className="leading-relaxed">{output}</div>
+                    <div className="leading-relaxed text-sm">{output}</div>
                     <div className="border-t border-gray-800 pt-3">
-                      <div className="flex items-center text-sm text-blue-400 mb-2">
-                        <CheckCircle2 size={14} className="mr-1.5" />
+                      <div className="flex items-center text-xs text-blue-400 mb-2">
+                        <CheckCircle2 size={12} className="mr-1.5" />
                         Universally Fixed by RectifAI
                       </div>
                       {correctionResult && (
@@ -297,7 +297,7 @@ const InputSimulator: React.FC = () => {
             <Button
               onClick={simulateRectification}
               disabled={!input.trim() || isProcessing}
-              className="px-12 py-3 text-lg"
+              className="px-12 py-3 text-base"
             >
               {isProcessing ? 'Fixing Everything...' : 'RectifAI Everything'}
             </Button>
@@ -305,7 +305,7 @@ const InputSimulator: React.FC = () => {
           
           {/* Universal Correction Info */}
           <div className="mt-8 text-center">
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-500 text-xs">
               RectifAI analyzes and improves: Language • Logic • Facts • Style • Tone • Structure • Clarity • Context • Culture • Professionalism
             </p>
             {!isGeminiConfigured && (
