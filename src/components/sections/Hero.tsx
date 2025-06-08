@@ -222,17 +222,43 @@ const Hero: React.FC = () => {
                   key={type.id}
                   onClick={() => setSelectedBadge(type.id)}
                   className={`
-                    group flex items-center justify-center bg-gray-900/50 rounded-lg p-3 border border-gray-800
-                    transition-all duration-300 cursor-pointer transform hover:scale-105
+                    group relative flex items-center justify-center bg-gray-900/50 rounded-lg p-3 border border-gray-800
+                    transition-all duration-300 cursor-pointer transform hover:scale-105 overflow-hidden
                     ${getColorClasses(type.color, 'hover')}
                     hover:shadow-lg hover:shadow-${type.color}-400/20
                   `}
                 >
+                  {/* Glow effect background */}
+                  <div className={`
+                    absolute inset-0 opacity-0 group-hover:opacity-100 
+                    transition-opacity duration-300 pointer-events-none
+                    bg-gradient-to-r from-${type.color}-500/10 via-${type.color}-400/20 to-${type.color}-500/10
+                    blur-sm
+                  `} />
+                  
+                  {/* Light pulse effect */}
+                  <div className={`
+                    absolute inset-0 opacity-0 group-hover:opacity-100
+                    transition-all duration-500 pointer-events-none
+                    bg-gradient-to-br from-${type.color}-400/5 via-transparent to-${type.color}-400/5
+                    animate-pulse
+                  `} />
+                  
+                  {/* Electric border effect */}
+                  <div className={`
+                    absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100
+                    transition-opacity duration-300 pointer-events-none
+                    border border-${type.color}-400/30
+                  `}
+                  style={{
+                    boxShadow: `inset 0 0 15px var(--tw-${type.color}-400-10), 0 0 15px var(--tw-${type.color}-400-20)`
+                  }} />
+                  
                   <IconComponent 
                     size={18} 
-                    className={`${getColorClasses(type.color, 'text')} mr-2 transition-all duration-300 group-hover:scale-110`} 
+                    className={`${getColorClasses(type.color, 'text')} mr-2 transition-all duration-300 group-hover:scale-110 relative z-10`} 
                   />
-                  <span className="text-gray-300 text-xs group-hover:text-white transition-colors duration-300">
+                  <span className="text-gray-300 text-xs group-hover:text-white transition-colors duration-300 relative z-10">
                     {type.name}
                   </span>
                 </button>

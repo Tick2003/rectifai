@@ -64,12 +64,24 @@ const HowItWorks: React.FC = () => {
           {/* Correction Types Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {correctionTypes.map((type, index) => (
-              <div key={index} className="bg-gray-900/50 rounded-lg p-4 border border-gray-800">
-                <div className="flex items-center justify-center mb-2">
+              <div 
+                key={index} 
+                className="group relative bg-gray-900/50 rounded-lg p-4 border border-gray-800 transition-all duration-300 cursor-pointer transform hover:scale-105 overflow-hidden hover:shadow-lg hover:shadow-white/10"
+              >
+                {/* Glow effect background */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-white/5 via-white/10 to-white/5 blur-sm" />
+                
+                {/* Light pulse effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none bg-gradient-to-br from-white/5 via-transparent to-white/5 animate-pulse" />
+                
+                {/* Electric border effect */}
+                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-white/20" style={{ boxShadow: 'inset 0 0 15px rgba(255,255,255,0.1), 0 0 15px rgba(255,255,255,0.1)' }} />
+                
+                <div className="flex items-center justify-center mb-2 relative z-10 transition-transform duration-300 group-hover:scale-110">
                   {type.icon}
                 </div>
-                <p className="text-gray-300 text-xs font-medium">{type.name}</p>
-                <p className="text-gray-500 text-xs">{type.count} fixes</p>
+                <p className="text-gray-300 text-xs font-medium group-hover:text-white transition-colors duration-300 relative z-10">{type.name}</p>
+                <p className="text-gray-500 text-xs group-hover:text-gray-300 transition-colors duration-300 relative z-10">{type.count} fixes</p>
               </div>
             ))}
           </div>
@@ -96,8 +108,17 @@ const HowItWorks: React.FC = () => {
                   <p className="text-gray-500 text-xs mb-3 text-center">Examples:</p>
                   <div className="grid grid-cols-2 gap-2">
                     {step.examples.map((example, exampleIndex) => (
-                      <div key={exampleIndex} className="bg-gray-800/50 rounded px-2 py-1 text-xs text-gray-400 text-center">
-                        {example}
+                      <div 
+                        key={exampleIndex} 
+                        className="group relative bg-gray-800/50 rounded px-2 py-1 text-xs text-gray-400 text-center transition-all duration-300 cursor-pointer hover:bg-gray-700/50 hover:text-gray-300 overflow-hidden"
+                      >
+                        {/* Subtle glow effect */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
+                        
+                        {/* Light border effect */}
+                        <div className="absolute inset-0 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-white/10" />
+                        
+                        <span className="relative z-10">{example}</span>
                       </div>
                     ))}
                   </div>

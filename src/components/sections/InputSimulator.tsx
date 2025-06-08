@@ -139,17 +139,35 @@ const InputSimulator: React.FC = () => {
           
           {/* Correction Capabilities */}
           <div className="flex justify-center gap-6 mb-8">
-            <div className="flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800">
-              <Brain size={14} className="text-blue-400 mr-2" />
-              <span className="text-gray-300 text-xs">Logic & Facts</span>
+            <div className="group relative flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800 transition-all duration-300 cursor-pointer hover:scale-105 hover:bg-gray-800/50 hover:shadow-lg hover:shadow-blue-400/20 overflow-hidden">
+              {/* Glow effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-blue-500/10 via-blue-400/20 to-blue-500/10" />
+              
+              {/* Electric border */}
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-blue-400/30" style={{ boxShadow: 'inset 0 0 15px rgba(59, 130, 246, 0.1), 0 0 15px rgba(59, 130, 246, 0.1)' }} />
+              
+              <Brain size={14} className="text-blue-400 mr-2 transition-all duration-300 group-hover:scale-110 relative z-10" />
+              <span className="text-gray-300 text-xs group-hover:text-white transition-colors duration-300 relative z-10">Logic & Facts</span>
             </div>
-            <div className="flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800">
-              <Zap size={14} className="text-purple-400 mr-2" />
-              <span className="text-gray-300 text-xs">Style & Tone</span>
+            <div className="group relative flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800 transition-all duration-300 cursor-pointer hover:scale-105 hover:bg-gray-800/50 hover:shadow-lg hover:shadow-purple-400/20 overflow-hidden">
+              {/* Glow effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-purple-500/10 via-purple-400/20 to-purple-500/10" />
+              
+              {/* Electric border */}
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-purple-400/30" style={{ boxShadow: 'inset 0 0 15px rgba(147, 51, 234, 0.1), 0 0 15px rgba(147, 51, 234, 0.1)' }} />
+              
+              <Zap size={14} className="text-purple-400 mr-2 transition-all duration-300 group-hover:scale-110 relative z-10" />
+              <span className="text-gray-300 text-xs group-hover:text-white transition-colors duration-300 relative z-10">Style & Tone</span>
             </div>
-            <div className="flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800">
-              <Globe size={14} className="text-green-400 mr-2" />
-              <span className="text-gray-300 text-xs">Context & Culture</span>
+            <div className="group relative flex items-center bg-gray-900/50 rounded-lg px-4 py-2 border border-gray-800 transition-all duration-300 cursor-pointer hover:scale-105 hover:bg-gray-800/50 hover:shadow-lg hover:shadow-green-400/20 overflow-hidden">
+              {/* Glow effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-green-500/10 via-green-400/20 to-green-500/10" />
+              
+              {/* Electric border */}
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-green-400/30" style={{ boxShadow: 'inset 0 0 15px rgba(34, 197, 94, 0.1), 0 0 15px rgba(34, 197, 94, 0.1)' }} />
+              
+              <Globe size={14} className="text-green-400 mr-2 transition-all duration-300 group-hover:scale-110 relative z-10" />
+              <span className="text-gray-300 text-xs group-hover:text-white transition-colors duration-300 relative z-10">Context & Culture</span>
             </div>
           </div>
         </div>
@@ -163,9 +181,15 @@ const InputSimulator: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => loadExample(example)}
-                  className="text-left bg-gray-900/50 border border-gray-800 rounded-lg p-3 text-gray-400 text-xs hover:bg-gray-800/50 transition-colors"
+                  className="group relative text-left bg-gray-900/50 border border-gray-800 rounded-lg p-3 text-gray-400 text-xs transition-all duration-300 hover:bg-gray-800/50 hover:text-gray-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5 overflow-hidden"
                 >
-                  {example.substring(0, 80)}...
+                  {/* Subtle glow effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
+                  
+                  {/* Light border effect */}
+                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-white/10" />
+                  
+                  <span className="relative z-10">{example.substring(0, 80)}...</span>
                 </button>
               ))}
             </div>
