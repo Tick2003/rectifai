@@ -34,6 +34,17 @@ const HowItWorks: React.FC = () => {
     { icon: <Zap className="w-5 h-5 text-orange-400" />, name: "Professional & Technical", count: "20+" }
   ];
 
+  const universalCoverageItems = [
+    { name: "Grammar & Spelling", color: "blue" },
+    { name: "Logic & Reasoning", color: "purple" },
+    { name: "Facts & Accuracy", color: "green" },
+    { name: "Style & Tone", color: "orange" },
+    { name: "Structure & Flow", color: "cyan" },
+    { name: "Clarity & Readability", color: "pink" },
+    { name: "Professional Standards", color: "yellow" },
+    { name: "Cultural Context", color: "red" }
+  ];
+
   return (
     <section id="how-it-works" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -115,18 +126,125 @@ const HowItWorks: React.FC = () => {
               RectifAI fixes everything across all domains, languages, and contexts
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-              {[
-                "Grammar & Spelling", "Logic & Reasoning", "Facts & Accuracy", "Style & Tone",
-                "Structure & Flow", "Clarity & Readability", "Professional Standards", "Cultural Context"
-              ].map((area, index) => (
-                <div key={index} className="text-gray-300 bg-gray-800/30 rounded-lg py-2 px-3">
-                  {area}
+              {universalCoverageItems.map((area, index) => (
+                <div 
+                  key={index} 
+                  className={`
+                    group relative text-gray-300 bg-gray-800/30 rounded-lg py-3 px-4 
+                    transition-all duration-300 cursor-pointer overflow-hidden
+                    hover:scale-105 hover:shadow-lg hover:bg-gray-700/50
+                    hover:text-white hover:border-${area.color}-400/50
+                    border border-transparent
+                  `}
+                >
+                  {/* Lightning Effect Background */}
+                  <div className={`
+                    absolute inset-0 opacity-0 group-hover:opacity-100 
+                    transition-opacity duration-300 pointer-events-none
+                    bg-gradient-to-r from-${area.color}-500/10 via-${area.color}-400/20 to-${area.color}-500/10
+                  `} />
+                  
+                  {/* Lightning Bolt Animation */}
+                  <div className={`
+                    absolute inset-0 opacity-0 group-hover:opacity-100
+                    transition-all duration-500 pointer-events-none
+                  `}>
+                    {/* Lightning Path 1 */}
+                    <div className={`
+                      absolute top-0 left-1/4 w-0.5 h-full 
+                      bg-gradient-to-b from-transparent via-${area.color}-400 to-transparent
+                      transform -skew-x-12 animate-pulse
+                      group-hover:animate-none
+                    `} 
+                    style={{
+                      animation: 'lightning 0.6s ease-in-out',
+                      animationDelay: '0.1s'
+                    }} />
+                    
+                    {/* Lightning Path 2 */}
+                    <div className={`
+                      absolute top-0 right-1/3 w-0.5 h-full 
+                      bg-gradient-to-b from-transparent via-${area.color}-300 to-transparent
+                      transform skew-x-12 animate-pulse
+                      group-hover:animate-none
+                    `}
+                    style={{
+                      animation: 'lightning 0.6s ease-in-out',
+                      animationDelay: '0.3s'
+                    }} />
+                    
+                    {/* Electric Sparks */}
+                    <div className={`
+                      absolute top-1/4 left-1/2 w-1 h-1 
+                      bg-${area.color}-400 rounded-full
+                      transform -translate-x-1/2 -translate-y-1/2
+                    `}
+                    style={{
+                      boxShadow: `0 0 10px var(--tw-${area.color}-400), 0 0 20px var(--tw-${area.color}-400)`,
+                      animation: 'spark 0.8s ease-in-out infinite',
+                      animationDelay: '0.2s'
+                    }} />
+                    
+                    <div className={`
+                      absolute bottom-1/4 right-1/4 w-1 h-1 
+                      bg-${area.color}-300 rounded-full
+                    `}
+                    style={{
+                      boxShadow: `0 0 8px var(--tw-${area.color}-300), 0 0 16px var(--tw-${area.color}-300)`,
+                      animation: 'spark 0.8s ease-in-out infinite',
+                      animationDelay: '0.5s'
+                    }} />
+                  </div>
+                  
+                  {/* Glow Effect */}
+                  <div className={`
+                    absolute inset-0 opacity-0 group-hover:opacity-100
+                    transition-opacity duration-300 pointer-events-none
+                    bg-gradient-to-r from-transparent via-${area.color}-400/5 to-transparent
+                    blur-sm
+                  `} />
+                  
+                  {/* Text Content */}
+                  <span className="relative z-10 font-medium">
+                    {area.name}
+                  </span>
+                  
+                  {/* Electric Border Effect */}
+                  <div className={`
+                    absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100
+                    transition-opacity duration-300 pointer-events-none
+                    border border-${area.color}-400/30
+                  `}
+                  style={{
+                    boxShadow: `inset 0 0 20px var(--tw-${area.color}-400-10), 0 0 20px var(--tw-${area.color}-400-20)`
+                  }} />
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
+      
+      <style jsx>{`
+        @keyframes lightning {
+          0% { opacity: 0; transform: scaleY(0) skew(-12deg); }
+          10% { opacity: 1; transform: scaleY(0.3) skew(-12deg); }
+          20% { opacity: 0.8; transform: scaleY(0.7) skew(-12deg); }
+          30% { opacity: 1; transform: scaleY(1) skew(-12deg); }
+          40% { opacity: 0.9; transform: scaleY(0.8) skew(-12deg); }
+          50% { opacity: 1; transform: scaleY(1) skew(-12deg); }
+          60% { opacity: 0.7; transform: scaleY(0.9) skew(-12deg); }
+          70% { opacity: 1; transform: scaleY(1) skew(-12deg); }
+          80% { opacity: 0.8; transform: scaleY(0.6) skew(-12deg); }
+          90% { opacity: 0.4; transform: scaleY(0.3) skew(-12deg); }
+          100% { opacity: 0; transform: scaleY(0) skew(-12deg); }
+        }
+        
+        @keyframes spark {
+          0%, 100% { opacity: 0; transform: scale(0); }
+          50% { opacity: 1; transform: scale(1); }
+        }
+      `}</style>
     </section>
   );
 };
