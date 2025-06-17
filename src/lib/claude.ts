@@ -51,7 +51,7 @@ export async function correctTextWithClaude(input: string): Promise<CorrectionRe
     
     if (error instanceof Error) {
       if (error.message.includes('API key')) {
-        throw new Error('Claude Sonnet 4 API key not configured. Please set up your Claude API key for the Bolt Hackathon.');
+        throw new Error('Claude Sonnet 4 API key not configured. Please set up your Claude API key.');
       } else if (error.message.includes('quota') || error.message.includes('rate limit')) {
         throw new Error('Claude Sonnet 4 API quota exceeded. Please try again later.');
       } else {

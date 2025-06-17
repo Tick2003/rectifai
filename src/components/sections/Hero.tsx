@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../ui/Button';
-import { ArrowRight, Zap, Globe, Brain, Sparkles, X, Trophy } from 'lucide-react';
+import { ArrowRight, Zap, Globe, Brain, Sparkles, X } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const [selectedBadge, setSelectedBadge] = useState<string | null>(null);
@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
       name: 'Logic',
       color: 'blue',
       title: 'Advanced Logic & Reasoning Correction',
-      description: 'Claude Sonnet 4 analyzes and fixes logical inconsistencies, argument structure, and reasoning flow with superior AI understanding for the Bolt Hackathon.',
+      description: 'Claude Sonnet 4 analyzes and fixes logical inconsistencies, argument structure, and reasoning flow with superior AI understanding.',
       features: [
         'Identifies complex logical fallacies and contradictions',
         'Improves sophisticated argument structure and flow',
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
       name: 'Style',
       color: 'purple',
       title: 'Superior Style & Tone Enhancement',
-      description: 'Advanced style optimization powered by Claude Sonnet 4 that adapts tone, voice, and presentation for maximum impact in the Bolt Hackathon.',
+      description: 'Advanced style optimization powered by Claude Sonnet 4 that adapts tone, voice, and presentation for maximum impact.',
       features: [
         'Intelligently adjusts tone for target audience',
         'Enhances sophisticated writing voice and personality',
@@ -105,7 +105,7 @@ const Hero: React.FC = () => {
       name: 'Facts',
       color: 'green',
       title: 'Advanced Factual Accuracy Verification',
-      description: 'Comprehensive fact-checking and accuracy enhancement powered by Claude Sonnet 4 across all domains and subjects for the Bolt Hackathon.',
+      description: 'Comprehensive fact-checking and accuracy enhancement powered by Claude Sonnet 4 across all domains and subjects.',
       features: [
         'Verifies complex statistical data and numbers',
         'Corrects historical dates and events with precision',
@@ -125,7 +125,7 @@ const Hero: React.FC = () => {
       name: 'Context',
       color: 'orange',
       title: 'Global Contextual & Cultural Awareness',
-      description: 'Intelligent context analysis powered by Claude Sonnet 4 that ensures cultural sensitivity and situational appropriateness for the Bolt Hackathon.',
+      description: 'Intelligent context analysis powered by Claude Sonnet 4 that ensures cultural sensitivity and situational appropriateness.',
       features: [
         'Adapts content for diverse cultural contexts',
         'Ensures appropriate regional language variations',
@@ -184,11 +184,6 @@ const Hero: React.FC = () => {
       
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-full px-4 py-2 mb-4">
-            <Trophy size={16} className="text-yellow-400 mr-2" />
-            <span className="text-yellow-300 text-sm font-medium">Bolt Hackathon Edition</span>
-          </div>
-          
           <div className="inline-flex items-center bg-gray-800/80 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm border border-gray-700">
             <Brain size={14} className="text-blue-400 mr-2" />
             <span className="text-gray-300 text-xs">Powered by Claude Sonnet 4 AI</span>
@@ -216,7 +211,7 @@ const Hero: React.FC = () => {
           
           <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
             The world's most comprehensive AI correction system powered by Claude Sonnet 4. We fix grammar, logic, facts, 
-            style, tone, structure, clarity, professionalism, and everything else across all domains for the Bolt Hackathon.
+            style, tone, structure, clarity, professionalism, and everything else across all domains.
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-2xl mx-auto">
@@ -326,7 +321,7 @@ const Hero: React.FC = () => {
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-white">{badge.title}</h3>
-                        <p className="text-xs text-yellow-400 mt-1">Claude Sonnet 4 Powered</p>
+                        <p className="text-xs text-blue-400 mt-1">Claude Sonnet 4 Powered</p>
                       </div>
                     </div>
                     <button

@@ -5,17 +5,17 @@ import { correctTextWithGemini } from './gemini';
 const API_URL = import.meta.env.VITE_CLOUD_RUN_URL;
 
 export async function correctText(input: string): Promise<CorrectionResult> {
-  console.log('Starting Claude Sonnet 4 correction process for Bolt Hackathon...');
+  console.log('Starting Claude Sonnet 4 correction process...');
   
   if (!input || input.trim().length === 0) {
     throw new Error('Input text is required');
   }
 
-  // Try Claude Sonnet 4 first (primary AI for Bolt Hackathon)
+  // Try Claude Sonnet 4 first (primary AI)
   try {
     console.log('Attempting Claude Sonnet 4 correction...');
     const claudeResult = await correctTextWithClaude(input);
-    console.log('Claude Sonnet 4 correction successful - Bolt Hackathon ready!');
+    console.log('Claude Sonnet 4 correction successful!');
     return claudeResult;
   } catch (claudeError) {
     console.error('Claude Sonnet 4 failed:', claudeError);

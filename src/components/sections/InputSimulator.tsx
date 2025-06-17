@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../ui/Button';
-import { Ghost, AlertCircle, CheckCircle2, Brain, Zap, Globe, AlertTriangle, Trophy } from 'lucide-react';
+import { Ghost, AlertCircle, CheckCircle2, Brain, Zap, Globe, AlertTriangle } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { correctText } from '../../lib/correctionLogic';
 import type { CorrectionResult } from '../../types';
@@ -44,7 +44,7 @@ const InputSimulator: React.FC = () => {
     setError(null);
     
     try {
-      console.log('Starting Claude Sonnet 4 correction process for Bolt Hackathon...');
+      console.log('Starting Claude Sonnet 4 correction process...');
       
       // Step 1: Process the universal correction with Claude Sonnet 4
       const result = await correctText(input);
@@ -87,7 +87,7 @@ const InputSimulator: React.FC = () => {
       // Step 4: Update UI
       setOutput(result.corrected);
       setCorrectionResult(result);
-      console.log('Claude Sonnet 4 UI updated successfully - Bolt Hackathon ready!');
+      console.log('Claude Sonnet 4 UI updated successfully!');
     } catch (error) {
       console.error('Error processing Claude Sonnet 4 correction:', error);
       
@@ -95,7 +95,7 @@ const InputSimulator: React.FC = () => {
       
       if (error instanceof Error) {
         if (error.message.includes('API key')) {
-          errorMessage = 'Claude Sonnet 4 API configuration issue. Please check your API keys for the Bolt Hackathon.';
+          errorMessage = 'Claude Sonnet 4 API configuration issue. Please check your API keys.';
         } else if (error.message.includes('quota')) {
           errorMessage = 'Claude Sonnet 4 API quota exceeded. Please try again later.';
         } else if (error.message.includes('safety')) {
@@ -118,16 +118,11 @@ const InputSimulator: React.FC = () => {
     <section id="simulator" className="py-24 bg-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-full px-4 py-2 mb-4">
-            <Trophy size={16} className="text-yellow-400 mr-2" />
-            <span className="text-yellow-300 text-sm font-medium">Bolt Hackathon Edition</span>
-          </div>
-          
           <h2 className="text-2xl md:text-3xl font-bold font-display text-white mb-4">
             Try Claude Sonnet 4 Universal RectifAI
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-sm">
-            Experience the most advanced AI correction powered by Claude Sonnet 4 that fixes everything - grammar, logic, facts, style, tone, structure, and more. Built for the Bolt Hackathon.
+            Experience the most advanced AI correction powered by Claude Sonnet 4 that fixes everything - grammar, logic, facts, style, tone, structure, and more.
           </p>
           
           {/* Claude Sonnet 4 Status Indicator */}
@@ -135,7 +130,7 @@ const InputSimulator: React.FC = () => {
             <div className="flex items-center justify-center text-blue-300">
               <Brain size={16} className="mr-2" />
               <span className="text-sm">
-                Powered by Claude Sonnet 4 - Next-Generation AI Correction Engine for Bolt Hackathon
+                Powered by Claude Sonnet 4 - Next-Generation AI Correction Engine
               </span>
             </div>
           </div>
@@ -290,7 +285,7 @@ const InputSimulator: React.FC = () => {
                       <p className="text-xs">{error}</p>
                       {error.includes('API') && (
                         <p className="text-xs text-gray-500 mt-2">
-                          Check your Claude Sonnet 4 API configuration for the Bolt Hackathon
+                          Check your Claude Sonnet 4 API configuration
                         </p>
                       )}
                     </div>
@@ -336,7 +331,7 @@ const InputSimulator: React.FC = () => {
               Claude Sonnet 4 analyzes and perfects: Language • Logic • Facts • Style • Tone • Structure • Clarity • Context • Culture • Professionalism • Technical Accuracy
             </p>
             <p className="text-blue-400 text-xs mt-2">
-              Powered by Claude Sonnet 4 - The most advanced AI correction system for the Bolt Hackathon
+              Powered by Claude Sonnet 4 - The most advanced AI correction system
             </p>
           </div>
         </div>
