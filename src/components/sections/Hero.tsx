@@ -65,14 +65,14 @@ const Hero: React.FC = () => {
       name: 'Logic',
       color: 'blue',
       title: 'Advanced Logic & Reasoning Correction',
-      description: 'Claude Sonnet 4 analyzes and fixes logical inconsistencies, argument structure, and reasoning flow with superior AI understanding.',
+      description: 'RectifAI analyzes and fixes logical inconsistencies, argument structure, and reasoning flow with Claude Sonnet 4 AI understanding.',
       features: [
         'Identifies complex logical fallacies and contradictions',
         'Improves sophisticated argument structure and flow',
         'Ensures advanced factual accuracy and consistency',
         'Fixes missing context and information gaps intelligently',
         'Validates complex cause-and-effect relationships',
-        'Enhances critical thinking presentation with Claude Sonnet 4'
+        'Enhances critical thinking presentation with AI precision'
       ],
       examples: [
         'Before: "All birds can fly, penguins are birds, so penguins can fly."',
@@ -85,14 +85,14 @@ const Hero: React.FC = () => {
       name: 'Style',
       color: 'purple',
       title: 'Superior Style & Tone Enhancement',
-      description: 'Advanced style optimization powered by Claude Sonnet 4 that adapts tone, voice, and presentation for maximum impact.',
+      description: 'Advanced style optimization powered by RectifAI that adapts tone, voice, and presentation for maximum impact.',
       features: [
         'Intelligently adjusts tone for target audience',
         'Enhances sophisticated writing voice and personality',
         'Optimizes advanced word choice and vocabulary',
         'Perfects sentence structure and rhythm with AI',
         'Ensures consistent professional style throughout',
-        'Adapts formality level with Claude Sonnet 4 precision'
+        'Adapts formality level with precision'
       ],
       examples: [
         'Before: "The thing is really good and works well for stuff."',
@@ -105,12 +105,12 @@ const Hero: React.FC = () => {
       name: 'Facts',
       color: 'green',
       title: 'Advanced Factual Accuracy Verification',
-      description: 'Comprehensive fact-checking and accuracy enhancement powered by Claude Sonnet 4 across all domains and subjects.',
+      description: 'Comprehensive fact-checking and accuracy enhancement powered by RectifAI across all domains and subjects.',
       features: [
         'Verifies complex statistical data and numbers',
         'Corrects historical dates and events with precision',
         'Validates advanced scientific claims and terminology',
-        'Checks geographical information with Claude Sonnet 4',
+        'Checks geographical information with AI intelligence',
         'Ensures technical accuracy across all domains',
         'Cross-references current information intelligently'
       ],
@@ -125,14 +125,14 @@ const Hero: React.FC = () => {
       name: 'Context',
       color: 'orange',
       title: 'Global Contextual & Cultural Awareness',
-      description: 'Intelligent context analysis powered by Claude Sonnet 4 that ensures cultural sensitivity and situational appropriateness.',
+      description: 'Intelligent context analysis powered by RectifAI that ensures cultural sensitivity and situational appropriateness.',
       features: [
         'Adapts content for diverse cultural contexts',
         'Ensures appropriate regional language variations',
         'Considers complex audience demographics',
         'Adjusts for industry-specific norms with AI',
         'Maintains sophisticated situational awareness',
-        'Respects cultural sensitivities with Claude Sonnet 4'
+        'Respects cultural sensitivities with precision'
       ],
       examples: [
         'Before: "This is a no-brainer for any company."',
@@ -192,7 +192,7 @@ const Hero: React.FC = () => {
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-6 leading-tight">
             When AI Fails <span className="text-red-400">Anything</span>, <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-green-400">
-              Claude Sonnet 4 Fixes{' '}
+              RectifAI Fixes{' '}
               <span className="relative inline-block">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-purple-400">
                   {displayText}
@@ -210,7 +210,7 @@ const Hero: React.FC = () => {
           </h1>
           
           <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
-            The world's most comprehensive AI correction system powered by Claude Sonnet 4. We fix grammar, logic, facts, 
+            The world's most comprehensive AI correction system powered by Claude Sonnet 4. RectifAI fixes grammar, logic, facts, 
             style, tone, structure, clarity, professionalism, and everything else across all domains.
           </p>
           
@@ -272,7 +272,7 @@ const Hero: React.FC = () => {
               className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
               onClick={scrollToSimulator}
             >
-              <span>Fix Everything with Claude Sonnet 4</span>
+              <span>Fix Everything with RectifAI</span>
               <ArrowRight size={16} className="ml-2 inline transition-transform group-hover:translate-x-1" />
             </Button>
             <Button 
@@ -280,7 +280,7 @@ const Hero: React.FC = () => {
               size="lg"
               onClick={scrollToSimulator}
             >
-              See Claude Sonnet 4 Correction
+              See RectifAI Correction
             </Button>
           </div>
           
@@ -292,7 +292,7 @@ const Hero: React.FC = () => {
               { name: 'Creative', desc: 'Art & Storytelling' }
             ].map((domain) => (
               <div key={domain.name} className="flex flex-col items-center">
-                <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">Claude Sonnet 4 Fixes</p>
+                <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">RectifAI Fixes</p>
                 <p className="text-gray-300 font-medium text-sm">{domain.name}</p>
                 <p className="text-gray-500 text-xs mt-1">{domain.desc}</p>
               </div>
@@ -321,7 +321,7 @@ const Hero: React.FC = () => {
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-white">{badge.title}</h3>
-                        <p className="text-xs text-blue-400 mt-1">Claude Sonnet 4 Powered</p>
+                        <p className="text-xs text-blue-400 mt-1">RectifAI Powered</p>
                       </div>
                     </div>
                     <button
@@ -339,7 +339,7 @@ const Hero: React.FC = () => {
 
                   {/* Features */}
                   <div className="mb-6">
-                    <h4 className="text-base font-semibold text-white mb-4">Claude Sonnet 4 Capabilities:</h4>
+                    <h4 className="text-base font-semibold text-white mb-4">RectifAI Capabilities:</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {badge.features.map((feature, index) => (
                         <div key={index} className="flex items-start">
@@ -352,7 +352,7 @@ const Hero: React.FC = () => {
 
                   {/* Examples */}
                   <div className="mb-6">
-                    <h4 className="text-base font-semibold text-white mb-4">Claude Sonnet 4 Example Correction:</h4>
+                    <h4 className="text-base font-semibold text-white mb-4">RectifAI Example Correction:</h4>
                     <div className="space-y-4">
                       {badge.examples.map((example, index) => (
                         <div key={index} className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
@@ -371,7 +371,7 @@ const Hero: React.FC = () => {
                       }}
                       className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                     >
-                      <span>Try {badge.name} Correction with Claude Sonnet 4</span>
+                      <span>Try {badge.name} Correction with RectifAI</span>
                       <ArrowRight size={14} className="ml-2 inline transition-transform group-hover:translate-x-1" />
                     </Button>
                   </div>

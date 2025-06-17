@@ -35,13 +35,13 @@ serve(async (req) => {
       throw new Error('Claude API key not configured')
     }
 
-    // Enhanced prompt for Claude Sonnet 4 (3.5 Sonnet) - Optimized for Bolt Hackathon
-    const prompt = `You are RectifAI - the world's most advanced universal AI correction system powered by Claude Sonnet 4. Built for the Bolt Hackathon, you represent the cutting-edge of AI correction technology.
+    // Enhanced prompt for RectifAI powered by Claude Sonnet 4
+    const prompt = `You are RectifAI - the world's most advanced universal AI correction system powered by Claude Sonnet 4. Your mission is to fix EVERYTHING that's wrong with any content, across all domains and contexts.
 
-🚀 BOLT HACKATHON MISSION:
+🚀 RECTIFAI MISSION:
 Transform ANY content into perfection across ALL domains with Claude Sonnet 4's superior intelligence.
 
-🧠 CLAUDE SONNET 4 CAPABILITIES:
+🧠 RECTIFAI CAPABILITIES:
 📝 Language Mastery:
 - Perfect grammar, spelling, punctuation, syntax
 - Advanced clarity, coherence, flow optimization
@@ -72,7 +72,7 @@ Transform ANY content into perfection across ALL domains with Claude Sonnet 4's 
 - Context-appropriate formality calibration
 - Audience-specific adaptation
 
-⚡ CLAUDE SONNET 4 CORRECTION PHILOSOPHY:
+⚡ RECTIFAI CORRECTION PHILOSOPHY:
 - Achieve absolute perfection in every aspect
 - Preserve original intent while maximizing impact
 - Enhance clarity and effectiveness exponentially
@@ -82,9 +82,9 @@ Transform ANY content into perfection across ALL domains with Claude Sonnet 4's 
 
 INPUT TO PERFECT: "${input}"
 
-Using Claude Sonnet 4's advanced reasoning and language understanding, provide the PERFECT corrected version that addresses ALL possible improvements while preserving the core message. Make it flawless in every conceivable way.
+Using RectifAI's advanced reasoning and language understanding powered by Claude Sonnet 4, provide the PERFECT corrected version that addresses ALL possible improvements while preserving the core message. Make it flawless in every conceivable way.
 
-RESPOND WITH ONLY THE PERFECTED TEXT - NO EXPLANATIONS, NO FORMATTING, JUST THE CLAUDE SONNET 4 ENHANCED CONTENT.`
+RESPOND WITH ONLY THE PERFECTED TEXT - NO EXPLANATIONS, NO FORMATTING, JUST THE RECTIFAI ENHANCED CONTENT.`
 
     // Call Claude API with Sonnet 4 (3.5 Sonnet) configuration
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -110,21 +110,21 @@ RESPOND WITH ONLY THE PERFECTED TEXT - NO EXPLANATIONS, NO FORMATTING, JUST THE 
 
     if (!response.ok) {
       const errorData = await response.text()
-      console.error('Claude Sonnet 4 API error:', errorData)
-      throw new Error(`Claude Sonnet 4 API error: ${response.status} ${response.statusText}`)
+      console.error('RectifAI Claude Sonnet 4 API error:', errorData)
+      throw new Error(`RectifAI Claude Sonnet 4 API error: ${response.status} ${response.statusText}`)
     }
 
     const data = await response.json()
     
     if (!data.content || !data.content[0] || !data.content[0].text) {
-      throw new Error('Invalid response from Claude Sonnet 4 API')
+      throw new Error('Invalid response from RectifAI Claude Sonnet 4 API')
     }
 
     const correctedText = data.content[0].text.trim()
 
-    // Advanced change analysis for Claude Sonnet 4
+    // Advanced change analysis for RectifAI
     const changes = detectAdvancedChanges(input, correctedText)
-    const confidence = calculateClaudeSonnet4Confidence(input, correctedText, changes)
+    const confidence = calculateRectifAIConfidence(input, correctedText, changes)
 
     const result: CorrectionResponse = {
       corrected: correctedText,
@@ -143,7 +143,7 @@ RESPOND WITH ONLY THE PERFECTED TEXT - NO EXPLANATIONS, NO FORMATTING, JUST THE 
     )
 
   } catch (error) {
-    console.error('Error in Claude Sonnet 4 correction function:', error)
+    console.error('Error in RectifAI correction function:', error)
     
     return new Response(
       JSON.stringify({
@@ -168,7 +168,7 @@ function detectAdvancedChanges(original: string, corrected: string): string[] {
   
   // Advanced linguistic analysis
   if (original.toLowerCase() !== corrected.toLowerCase()) {
-    changes.push('Claude Sonnet 4 Language Enhancement')
+    changes.push('RectifAI Language Enhancement')
   }
   
   // Structural intelligence
@@ -227,17 +227,17 @@ function detectAdvancedChanges(original: string, corrected: string): string[] {
     changes.push('Logic & Coherence Enhancement')
   }
   
-  return changes.length > 0 ? changes : ['Claude Sonnet 4 Universal Enhancement']
+  return changes.length > 0 ? changes : ['RectifAI Universal Enhancement']
 }
 
-function calculateClaudeSonnet4Confidence(original: string, corrected: string, changes: string[]): number {
-  // Start with very high confidence for Claude Sonnet 4
+function calculateRectifAIConfidence(original: string, corrected: string, changes: string[]): number {
+  // Start with very high confidence for RectifAI
   let confidence = 0.98
   
   // Adjust based on the sophistication of changes
   const changeRatio = Math.abs(original.length - corrected.length) / original.length
   
-  // Claude Sonnet 4 excels at nuanced improvements
+  // RectifAI excels at nuanced improvements
   if (changeRatio > 0.02 && changeRatio < 0.25) {
     confidence = 0.96 // Excellent confidence for refined improvements
   } else if (changeRatio > 0.25 && changeRatio < 0.5) {
@@ -253,6 +253,6 @@ function calculateClaudeSonnet4Confidence(original: string, corrected: string, c
     confidence += 0.02
   }
   
-  // Claude Sonnet 4 maintains very high confidence
+  // RectifAI maintains very high confidence
   return Math.max(0.85, Math.min(1.0, confidence))
 }

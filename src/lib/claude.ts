@@ -13,7 +13,7 @@ export async function correctTextWithClaude(input: string): Promise<CorrectionRe
   }
 
   try {
-    console.log('Calling Claude Sonnet 4 via Supabase Edge Function...');
+    console.log('Calling RectifAI with Claude Sonnet 4 via Supabase Edge Function...');
     
     const response = await fetch(`${SUPABASE_URL}/functions/v1/claude-correction`, {
       method: 'POST',
@@ -26,8 +26,8 @@ export async function correctTextWithClaude(input: string): Promise<CorrectionRe
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('Claude Sonnet 4 correction API error:', errorData);
-      throw new Error(`Claude Sonnet 4 API request failed: ${response.status} ${response.statusText}`);
+      console.error('RectifAI Claude Sonnet 4 correction API error:', errorData);
+      throw new Error(`RectifAI API request failed: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -36,7 +36,7 @@ export async function correctTextWithClaude(input: string): Promise<CorrectionRe
       throw new Error(data.error);
     }
 
-    console.log('Claude Sonnet 4 correction successful');
+    console.log('RectifAI Claude Sonnet 4 correction successful');
     
     return {
       corrected: data.corrected,
@@ -47,19 +47,19 @@ export async function correctTextWithClaude(input: string): Promise<CorrectionRe
       }
     };
   } catch (error) {
-    console.error('Claude Sonnet 4 correction error:', error);
+    console.error('RectifAI Claude Sonnet 4 correction error:', error);
     
     if (error instanceof Error) {
       if (error.message.includes('API key')) {
-        throw new Error('Claude Sonnet 4 API key not configured. Please set up your Claude API key.');
+        throw new Error('RectifAI API key not configured. Please set up your Claude API key.');
       } else if (error.message.includes('quota') || error.message.includes('rate limit')) {
-        throw new Error('Claude Sonnet 4 API quota exceeded. Please try again later.');
+        throw new Error('RectifAI API quota exceeded. Please try again later.');
       } else {
-        throw new Error(`Claude Sonnet 4 API error: ${error.message}`);
+        throw new Error(`RectifAI API error: ${error.message}`);
       }
     }
     
-    throw new Error('Failed to process text with Claude Sonnet 4');
+    throw new Error('Failed to process text with RectifAI');
   }
 }
 

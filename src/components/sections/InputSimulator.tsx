@@ -44,11 +44,11 @@ const InputSimulator: React.FC = () => {
     setError(null);
     
     try {
-      console.log('Starting Claude Sonnet 4 correction process...');
+      console.log('Starting RectifAI correction process...');
       
-      // Step 1: Process the universal correction with Claude Sonnet 4
+      // Step 1: Process the universal correction with RectifAI
       const result = await correctText(input);
-      console.log('Claude Sonnet 4 correction completed:', result);
+      console.log('RectifAI correction completed:', result);
       
       // Step 2: Save input to Supabase
       const { data: submission, error: submissionError } = await supabase
@@ -87,19 +87,19 @@ const InputSimulator: React.FC = () => {
       // Step 4: Update UI
       setOutput(result.corrected);
       setCorrectionResult(result);
-      console.log('Claude Sonnet 4 UI updated successfully!');
+      console.log('RectifAI UI updated successfully!');
     } catch (error) {
-      console.error('Error processing Claude Sonnet 4 correction:', error);
+      console.error('Error processing RectifAI correction:', error);
       
       let errorMessage = 'An error occurred while processing your request.';
       
       if (error instanceof Error) {
         if (error.message.includes('API key')) {
-          errorMessage = 'Claude Sonnet 4 API configuration issue. Please check your API keys.';
+          errorMessage = 'RectifAI API configuration issue. Please check your API keys.';
         } else if (error.message.includes('quota')) {
-          errorMessage = 'Claude Sonnet 4 API quota exceeded. Please try again later.';
+          errorMessage = 'RectifAI API quota exceeded. Please try again later.';
         } else if (error.message.includes('safety')) {
-          errorMessage = 'Content blocked by Claude Sonnet 4 safety filters. Please try different text.';
+          errorMessage = 'Content blocked by RectifAI safety filters. Please try different text.';
         } else {
           errorMessage = error.message;
         }
@@ -119,18 +119,18 @@ const InputSimulator: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-3xl font-bold font-display text-white mb-4">
-            Try Claude Sonnet 4 Universal RectifAI
+            Try RectifAI Universal Correction
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-sm">
             Experience the most advanced AI correction powered by Claude Sonnet 4 that fixes everything - grammar, logic, facts, style, tone, structure, and more.
           </p>
           
-          {/* Claude Sonnet 4 Status Indicator */}
+          {/* RectifAI Status Indicator */}
           <div className="mb-6 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/30 rounded-lg p-4 max-w-2xl mx-auto">
             <div className="flex items-center justify-center text-blue-300">
               <Brain size={16} className="mr-2" />
               <span className="text-sm">
-                Powered by Claude Sonnet 4 - Next-Generation AI Correction Engine
+                Powered by RectifAI - Next-Generation AI Correction Engine
               </span>
             </div>
           </div>
@@ -173,7 +173,7 @@ const InputSimulator: React.FC = () => {
         <div className="max-w-6xl mx-auto bg-gray-950 border border-gray-800 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(59,130,246,0.05)]">
           {/* Example Inputs */}
           <div className="mb-6">
-            <p className="text-gray-400 text-xs mb-3">Try these examples or paste your own content for Claude Sonnet 4 correction:</p>
+            <p className="text-gray-400 text-xs mb-3">Try these examples or paste your own content for RectifAI correction:</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {exampleInputs.map((example, index) => (
                 <button
@@ -208,7 +208,7 @@ const InputSimulator: React.FC = () => {
               <textarea
                 id="input"
                 className="w-full h-80 bg-gray-900 border border-gray-800 rounded-lg p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-sm"
-                placeholder="Paste any content here - writing, code, business documents, creative content, technical documentation, or anything else. Claude Sonnet 4 will fix everything that needs improvement with superior AI intelligence."
+                placeholder="Paste any content here - writing, code, business documents, creative content, technical documentation, or anything else. RectifAI will fix everything that needs improvement with superior AI intelligence."
                 value={input}
                 onChange={handleInputChange}
               />
@@ -218,7 +218,7 @@ const InputSimulator: React.FC = () => {
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
                   <label htmlFor="output" className="text-gray-300 font-medium text-sm">
-                    Claude Sonnet 4 Perfected Output
+                    RectifAI Perfected Output
                   </label>
                   {output && (
                     <div className="relative ml-2">
@@ -226,14 +226,14 @@ const InputSimulator: React.FC = () => {
                         className="text-gray-400 hover:text-blue-400 transition-colors"
                         onMouseEnter={() => setShowTooltip(true)}
                         onMouseLeave={() => setShowTooltip(false)}
-                        aria-label="Show Claude Sonnet 4 correction info"
+                        aria-label="Show RectifAI correction info"
                       >
                         <Ghost size={14} />
                       </button>
                       {showTooltip && correctionResult && (
                         <div className="absolute left-full ml-2 top-0 w-72 bg-gray-900 border border-gray-700 rounded-md p-4 text-xs text-gray-300 z-10">
                           <div className="mb-3">
-                            <span className="font-medium">Claude Sonnet 4 Confidence: </span>
+                            <span className="font-medium">RectifAI Confidence: </span>
                             <span className="text-blue-400">{Math.round(correctionResult.confidence * 100)}%</span>
                           </div>
                           <div className="mb-3">
@@ -241,7 +241,7 @@ const InputSimulator: React.FC = () => {
                             <span className="text-green-400">{correctionResult.changes.total}</span>
                           </div>
                           <div>
-                            <span className="font-medium">Claude Sonnet 4 Enhancements: </span>
+                            <span className="font-medium">RectifAI Enhancements: </span>
                             <div className="mt-1 flex flex-wrap gap-1">
                               {correctionResult.changes.types.map((type, index) => (
                                 <span key={index} className="bg-blue-900/30 text-blue-300 px-2 py-1 rounded text-xs">
@@ -261,7 +261,7 @@ const InputSimulator: React.FC = () => {
                   <div className="text-gray-500 flex items-start">
                     <AlertCircle size={14} className="mr-2 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="mb-2 text-xs">Claude Sonnet 4 perfected output will appear here</p>
+                      <p className="mb-2 text-xs">RectifAI perfected output will appear here</p>
                       <p className="text-xs">Advanced Fixes: Grammar, Logic, Facts, Style, Tone, Structure, Clarity, Professional Enhancement, and more</p>
                     </div>
                   </div>
@@ -271,7 +271,7 @@ const InputSimulator: React.FC = () => {
                     <div className="animate-pulse flex flex-col items-center">
                       <div className="w-12 h-12 border-t-2 border-b-2 border-blue-400 rounded-full animate-spin mb-3"></div>
                       <span className="text-gray-400 text-xs text-center">
-                        Claude Sonnet 4 analyzing and perfecting everything...<br />
+                        RectifAI analyzing and perfecting everything...<br />
                         <span className="text-xs text-gray-500">Advanced Grammar • Superior Logic • Verified Facts • Professional Style • Cultural Context</span>
                       </span>
                     </div>
@@ -281,11 +281,11 @@ const InputSimulator: React.FC = () => {
                   <div className="text-red-400 flex items-start">
                     <AlertCircle size={14} className="mr-2 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-medium mb-1 text-xs">Claude Sonnet 4 Error:</p>
+                      <p className="font-medium mb-1 text-xs">RectifAI Error:</p>
                       <p className="text-xs">{error}</p>
                       {error.includes('API') && (
                         <p className="text-xs text-gray-500 mt-2">
-                          Check your Claude Sonnet 4 API configuration
+                          Check your RectifAI API configuration
                         </p>
                       )}
                     </div>
@@ -297,7 +297,7 @@ const InputSimulator: React.FC = () => {
                     <div className="border-t border-gray-800 pt-3">
                       <div className="flex items-center text-xs text-blue-400 mb-2">
                         <CheckCircle2 size={12} className="mr-1.5" />
-                        Universally Perfected by Claude Sonnet 4
+                        Universally Perfected by RectifAI
                       </div>
                       {correctionResult && (
                         <div className="flex flex-wrap gap-2">
@@ -321,14 +321,14 @@ const InputSimulator: React.FC = () => {
               disabled={!input.trim() || isProcessing}
               className="px-12 py-3 text-base bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
             >
-              {isProcessing ? 'Claude Sonnet 4 Perfecting Everything...' : 'RectifAI with Claude Sonnet 4'}
+              {isProcessing ? 'RectifAI Perfecting Everything...' : 'Fix Everything with RectifAI'}
             </Button>
           </div>
           
-          {/* Claude Sonnet 4 Universal Correction Info */}
+          {/* RectifAI Universal Correction Info */}
           <div className="mt-8 text-center">
             <p className="text-gray-500 text-xs">
-              Claude Sonnet 4 analyzes and perfects: Language • Logic • Facts • Style • Tone • Structure • Clarity • Context • Culture • Professionalism • Technical Accuracy
+              RectifAI analyzes and perfects: Language • Logic • Facts • Style • Tone • Structure • Clarity • Context • Culture • Professionalism • Technical Accuracy
             </p>
             <p className="text-blue-400 text-xs mt-2">
               Powered by Claude Sonnet 4 - The most advanced AI correction system

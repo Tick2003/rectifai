@@ -5,26 +5,26 @@ import { correctTextWithGemini } from './gemini';
 const API_URL = import.meta.env.VITE_CLOUD_RUN_URL;
 
 export async function correctText(input: string): Promise<CorrectionResult> {
-  console.log('Starting Claude Sonnet 4 correction process...');
+  console.log('Starting RectifAI correction process...');
   
   if (!input || input.trim().length === 0) {
     throw new Error('Input text is required');
   }
 
-  // Try Claude Sonnet 4 first (primary AI)
+  // Try Claude Sonnet 4 first (primary AI engine)
   try {
-    console.log('Attempting Claude Sonnet 4 correction...');
+    console.log('Attempting RectifAI correction with Claude Sonnet 4...');
     const claudeResult = await correctTextWithClaude(input);
-    console.log('Claude Sonnet 4 correction successful!');
+    console.log('RectifAI correction with Claude Sonnet 4 successful!');
     return claudeResult;
   } catch (claudeError) {
-    console.error('Claude Sonnet 4 failed:', claudeError);
+    console.error('RectifAI Claude Sonnet 4 failed:', claudeError);
     console.log('Trying Gemini API fallback...');
     
     // Fallback to Gemini API
     try {
       const geminiResult = await correctTextWithGemini(input);
-      console.log('Gemini API correction successful (fallback)');
+      console.log('RectifAI Gemini API correction successful (fallback)');
       
       return {
         corrected: geminiResult.corrected,
@@ -35,7 +35,7 @@ export async function correctText(input: string): Promise<CorrectionResult> {
         }
       };
     } catch (geminiError) {
-      console.error('Gemini API failed:', geminiError);
+      console.error('RectifAI Gemini API failed:', geminiError);
       console.log('Trying Cloud Run API fallback...');
       
       // Fallback to Cloud Run API
@@ -58,7 +58,7 @@ export async function correctText(input: string): Promise<CorrectionResult> {
           }
 
           const data = await response.json();
-          console.log('Cloud Run API correction successful');
+          console.log('RectifAI Cloud Run API correction successful');
           
           return {
             corrected: data.corrected,
@@ -69,13 +69,13 @@ export async function correctText(input: string): Promise<CorrectionResult> {
             }
           };
         } catch (apiError) {
-          console.error('Cloud Run API failed:', apiError);
+          console.error('RectifAI Cloud Run API failed:', apiError);
           console.log('Using basic correction fallback...');
         }
       }
       
       // Final fallback to basic correction
-      console.log('Using basic correction logic...');
+      console.log('Using RectifAI basic correction logic...');
       return basicCorrection(input);
     }
   }
