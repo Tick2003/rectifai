@@ -5,26 +5,26 @@ import { correctTextWithGemini } from './gemini';
 const API_URL = import.meta.env.VITE_CLOUD_RUN_URL;
 
 export async function correctText(input: string): Promise<CorrectionResult> {
-  console.log('Starting correction process...');
+  console.log('Starting Claude Sonnet 4 correction process for Bolt Hackathon...');
   
   if (!input || input.trim().length === 0) {
     throw new Error('Input text is required');
   }
 
-  // Try Claude Sonnet first (primary AI)
+  // Try Claude Sonnet 4 first (primary AI for Bolt Hackathon)
   try {
-    console.log('Attempting Claude Sonnet correction...');
+    console.log('Attempting Claude Sonnet 4 correction...');
     const claudeResult = await correctTextWithClaude(input);
-    console.log('Claude Sonnet correction successful');
+    console.log('Claude Sonnet 4 correction successful - Bolt Hackathon ready!');
     return claudeResult;
   } catch (claudeError) {
-    console.error('Claude Sonnet failed:', claudeError);
+    console.error('Claude Sonnet 4 failed:', claudeError);
     console.log('Trying Gemini API fallback...');
     
     // Fallback to Gemini API
     try {
       const geminiResult = await correctTextWithGemini(input);
-      console.log('Gemini API correction successful');
+      console.log('Gemini API correction successful (fallback)');
       
       return {
         corrected: geminiResult.corrected,
