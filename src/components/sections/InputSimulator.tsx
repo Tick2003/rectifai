@@ -44,9 +44,9 @@ const InputSimulator: React.FC = () => {
     setError(null);
     
     try {
-      console.log('Starting correction process...');
+      console.log('Starting Claude Sonnet correction process...');
       
-      // Step 1: Process the universal correction
+      // Step 1: Process the universal correction with Claude Sonnet
       const result = await correctText(input);
       console.log('Correction completed:', result);
       
@@ -95,7 +95,7 @@ const InputSimulator: React.FC = () => {
       
       if (error instanceof Error) {
         if (error.message.includes('API key')) {
-          errorMessage = 'API configuration issue. Please check your Gemini API key.';
+          errorMessage = 'AI API configuration issue. Please check your API keys.';
         } else if (error.message.includes('quota')) {
           errorMessage = 'API quota exceeded. Please try again later.';
         } else if (error.message.includes('safety')) {
@@ -111,8 +111,8 @@ const InputSimulator: React.FC = () => {
     }
   };
 
-  // Check if Gemini API is configured
-  const isGeminiConfigured = !!import.meta.env.VITE_GEMINI_API_KEY;
+  // Check if Claude API is configured
+  const isClaudeConfigured = !!import.meta.env.VITE_SUPABASE_URL;
 
   return (
     <section id="simulator" className="py-24 bg-black">
@@ -122,20 +122,18 @@ const InputSimulator: React.FC = () => {
             Try Universal RectifAI Now
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-sm">
-            Experience comprehensive AI correction that fixes everything - grammar, logic, facts, style, tone, structure, and more.
+            Experience comprehensive AI correction powered by Claude Sonnet that fixes everything - grammar, logic, facts, style, tone, structure, and more.
           </p>
           
-          {/* API Status Indicator */}
-          {!isGeminiConfigured && (
-            <div className="mb-6 bg-yellow-900/20 border border-yellow-700 rounded-lg p-4 max-w-2xl mx-auto">
-              <div className="flex items-center justify-center text-yellow-400">
-                <AlertTriangle size={14} className="mr-2" />
-                <span className="text-xs">
-                  Gemini API not configured - using basic correction mode
-                </span>
-              </div>
+          {/* AI Status Indicator */}
+          <div className="mb-6 bg-blue-900/20 border border-blue-700 rounded-lg p-4 max-w-2xl mx-auto">
+            <div className="flex items-center justify-center text-blue-400">
+              <Brain size={14} className="mr-2" />
+              <span className="text-xs">
+                Powered by Claude Sonnet - Advanced AI Correction Engine
+              </span>
             </div>
-          )}
+          </div>
           
           {/* Correction Capabilities */}
           <div className="flex justify-center gap-6 mb-8">
@@ -210,7 +208,7 @@ const InputSimulator: React.FC = () => {
               <textarea
                 id="input"
                 className="w-full h-80 bg-gray-900 border border-gray-800 rounded-lg p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-sm"
-                placeholder="Paste any content here - writing, code, business documents, creative content, technical documentation, or anything else. RectifAI will fix everything that needs improvement."
+                placeholder="Paste any content here - writing, code, business documents, creative content, technical documentation, or anything else. RectifAI powered by Claude Sonnet will fix everything that needs improvement."
                 value={input}
                 onChange={handleInputChange}
               />
@@ -220,7 +218,7 @@ const InputSimulator: React.FC = () => {
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
                   <label htmlFor="output" className="text-gray-300 font-medium text-sm">
-                    Universally Fixed Output
+                    Claude Sonnet Fixed Output
                   </label>
                   {output && (
                     <div className="relative ml-2">
@@ -263,7 +261,7 @@ const InputSimulator: React.FC = () => {
                   <div className="text-gray-500 flex items-start">
                     <AlertCircle size={14} className="mr-2 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="mb-2 text-xs">Universally corrected output will appear here</p>
+                      <p className="mb-2 text-xs">Claude Sonnet corrected output will appear here</p>
                       <p className="text-xs">Fixes: Grammar, Logic, Facts, Style, Tone, Structure, Clarity, and more</p>
                     </div>
                   </div>
@@ -273,7 +271,7 @@ const InputSimulator: React.FC = () => {
                     <div className="animate-pulse flex flex-col items-center">
                       <div className="w-12 h-12 border-t-2 border-b-2 border-blue-400 rounded-full animate-spin mb-3"></div>
                       <span className="text-gray-400 text-xs text-center">
-                        Analyzing and fixing everything...<br />
+                        Claude Sonnet analyzing and fixing everything...<br />
                         <span className="text-xs text-gray-500">Grammar • Logic • Facts • Style • Context</span>
                       </span>
                     </div>
@@ -299,7 +297,7 @@ const InputSimulator: React.FC = () => {
                     <div className="border-t border-gray-800 pt-3">
                       <div className="flex items-center text-xs text-blue-400 mb-2">
                         <CheckCircle2 size={12} className="mr-1.5" />
-                        Universally Fixed by RectifAI
+                        Universally Fixed by Claude Sonnet
                       </div>
                       {correctionResult && (
                         <div className="flex flex-wrap gap-2">
@@ -323,20 +321,18 @@ const InputSimulator: React.FC = () => {
               disabled={!input.trim() || isProcessing}
               className="px-12 py-3 text-base"
             >
-              {isProcessing ? 'Fixing Everything...' : 'RectifAI Everything'}
+              {isProcessing ? 'Claude Sonnet Fixing Everything...' : 'RectifAI with Claude Sonnet'}
             </Button>
           </div>
           
           {/* Universal Correction Info */}
           <div className="mt-8 text-center">
             <p className="text-gray-500 text-xs">
-              RectifAI analyzes and improves: Language • Logic • Facts • Style • Tone • Structure • Clarity • Context • Culture • Professionalism
+              Claude Sonnet analyzes and improves: Language • Logic • Facts • Style • Tone • Structure • Clarity • Context • Culture • Professionalism
             </p>
-            {!isGeminiConfigured && (
-              <p className="text-yellow-500 text-xs mt-2">
-                For full AI-powered correction, configure your Gemini API key in the environment variables
-              </p>
-            )}
+            <p className="text-blue-400 text-xs mt-2">
+              Powered by Claude 3.5 Sonnet - The most advanced AI correction system
+            </p>
           </div>
         </div>
       </div>

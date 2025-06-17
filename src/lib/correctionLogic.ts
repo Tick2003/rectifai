@@ -1,4 +1,5 @@
 import { type CorrectionResult } from '../types';
+import { correctTextWithClaude } from './claude';
 import { correctTextWithGemini } from './gemini';
 
 const API_URL = import.meta.env.VITE_CLOUD_RUN_URL;
@@ -10,63 +11,73 @@ export async function correctText(input: string): Promise<CorrectionResult> {
     throw new Error('Input text is required');
   }
 
-  // Try Gemini API first if available
+  // Try Claude Sonnet first (primary AI)
   try {
-    console.log('Attempting Gemini API correction...');
-    const geminiResult = await correctTextWithGemini(input);
-    console.log('Gemini API correction successful');
+    console.log('Attempting Claude Sonnet correction...');
+    const claudeResult = await correctTextWithClaude(input);
+    console.log('Claude Sonnet correction successful');
+    return claudeResult;
+  } catch (claudeError) {
+    console.error('Claude Sonnet failed:', claudeError);
+    console.log('Trying Gemini API fallback...');
     
-    return {
-      corrected: geminiResult.corrected,
-      confidence: geminiResult.confidence,
-      changes: {
-        total: countDifferences(input, geminiResult.corrected),
-        types: geminiResult.changes
-      }
-    };
-  } catch (geminiError) {
-    console.error('Gemini API failed:', geminiError);
-    console.log('Trying Cloud Run API fallback...');
-    
-    // Fallback to Cloud Run API
-    if (API_URL) {
-      try {
-        const response = await fetch(API_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Origin': window.location.origin
-          },
-          mode: 'cors',
-          credentials: 'omit',
-          body: JSON.stringify({ input }),
-        });
-
-        if (!response.ok) {
-          throw new Error(`API request failed with status ${response.status}`);
+    // Fallback to Gemini API
+    try {
+      const geminiResult = await correctTextWithGemini(input);
+      console.log('Gemini API correction successful');
+      
+      return {
+        corrected: geminiResult.corrected,
+        confidence: geminiResult.confidence,
+        changes: {
+          total: countDifferences(input, geminiResult.corrected),
+          types: geminiResult.changes
         }
+      };
+    } catch (geminiError) {
+      console.error('Gemini API failed:', geminiError);
+      console.log('Trying Cloud Run API fallback...');
+      
+      // Fallback to Cloud Run API
+      if (API_URL) {
+        try {
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Origin': window.location.origin
+            },
+            mode: 'cors',
+            credentials: 'omit',
+            body: JSON.stringify({ input }),
+          });
 
-        const data = await response.json();
-        console.log('Cloud Run API correction successful');
-        
-        return {
-          corrected: data.corrected,
-          confidence: data.confidence || 0.9,
-          changes: {
-            total: countDifferences(input, data.corrected),
-            types: data.changes || ['grammar', 'spelling']
+          if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
           }
-        };
-      } catch (apiError) {
-        console.error('Cloud Run API failed:', apiError);
-        console.log('Using basic correction fallback...');
+
+          const data = await response.json();
+          console.log('Cloud Run API correction successful');
+          
+          return {
+            corrected: data.corrected,
+            confidence: data.confidence || 0.9,
+            changes: {
+              total: countDifferences(input, data.corrected),
+              types: data.changes || ['grammar', 'spelling']
+            }
+          };
+        } catch (apiError) {
+          console.error('Cloud Run API failed:', apiError);
+          console.log('Using basic correction fallback...');
+        }
       }
+      
+      // Final fallback to basic correction
+      console.log('Using basic correction logic...');
+      return basicCorrection(input);
     }
-    
-    // Final fallback to basic correction
-    console.log('Using basic correction logic...');
-    return basicCorrection(input);
   }
 }
 

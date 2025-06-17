@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
       name: 'Logic',
       color: 'blue',
       title: 'Logic & Reasoning Correction',
-      description: 'RectifAI analyzes and fixes logical inconsistencies, argument structure, and reasoning flow.',
+      description: 'Claude Sonnet analyzes and fixes logical inconsistencies, argument structure, and reasoning flow with advanced AI understanding.',
       features: [
         'Identifies logical fallacies and contradictions',
         'Improves argument structure and flow',
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
       name: 'Style',
       color: 'purple',
       title: 'Style & Tone Enhancement',
-      description: 'Advanced style optimization that adapts tone, voice, and presentation for maximum impact.',
+      description: 'Advanced style optimization powered by Claude Sonnet that adapts tone, voice, and presentation for maximum impact.',
       features: [
         'Adjusts tone for target audience',
         'Enhances writing voice and personality',
@@ -105,7 +105,7 @@ const Hero: React.FC = () => {
       name: 'Facts',
       color: 'green',
       title: 'Factual Accuracy Verification',
-      description: 'Comprehensive fact-checking and accuracy enhancement across all domains and subjects.',
+      description: 'Comprehensive fact-checking and accuracy enhancement powered by Claude Sonnet across all domains and subjects.',
       features: [
         'Verifies statistical data and numbers',
         'Corrects historical dates and events',
@@ -125,7 +125,7 @@ const Hero: React.FC = () => {
       name: 'Context',
       color: 'orange',
       title: 'Contextual & Cultural Awareness',
-      description: 'Intelligent context analysis that ensures cultural sensitivity and situational appropriateness.',
+      description: 'Intelligent context analysis powered by Claude Sonnet that ensures cultural sensitivity and situational appropriateness.',
       features: [
         'Adapts content for cultural contexts',
         'Ensures appropriate regional language',
@@ -185,8 +185,8 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center bg-gray-800/80 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm border border-gray-700">
-            <Globe size={14} className="text-blue-400 mr-2" />
-            <span className="text-gray-300 text-xs">Universal AI Correction Technology</span>
+            <Brain size={14} className="text-blue-400 mr-2" />
+            <span className="text-gray-300 text-xs">Powered by Claude Sonnet AI</span>
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-6 leading-tight">
@@ -210,7 +210,7 @@ const Hero: React.FC = () => {
           </h1>
           
           <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
-            The world's most comprehensive AI correction system. We fix grammar, logic, facts, 
+            The world's most comprehensive AI correction system powered by Claude Sonnet. We fix grammar, logic, facts, 
             style, tone, structure, clarity, professionalism, and everything else across all domains.
           </p>
           
@@ -272,7 +272,7 @@ const Hero: React.FC = () => {
               className="group"
               onClick={scrollToSimulator}
             >
-              <span>Fix Everything Now</span>
+              <span>Fix Everything with Claude</span>
               <ArrowRight size={16} className="ml-2 inline transition-transform group-hover:translate-x-1" />
             </Button>
             <Button 
@@ -280,7 +280,7 @@ const Hero: React.FC = () => {
               size="lg"
               onClick={scrollToSimulator}
             >
-              See Universal Correction
+              See Claude Sonnet Correction
             </Button>
           </div>
           
@@ -368,7 +368,7 @@ const Hero: React.FC = () => {
                       }}
                       className="group"
                     >
-                      <span>Try {badge.name} Correction</span>
+                      <span>Try {badge.name} Correction with Claude</span>
                       <ArrowRight size={14} className="ml-2 inline transition-transform group-hover:translate-x-1" />
                     </Button>
                   </div>
