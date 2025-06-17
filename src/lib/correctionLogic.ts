@@ -1,5 +1,7 @@
 import { correctTextWithClaude } from './claude';
 import { correctTextWithGemini } from './gemini';
+import { correctTextWithHuggingFace } from './huggingface';
+import { correctTextWithOpenAI } from './openai';
 import { correctTextWithFallback } from './fallbackCorrection';
 import { type CorrectionResult } from '../types';
 
@@ -8,33 +10,51 @@ export async function correctText(input: string): Promise<CorrectionResult> {
     throw new Error('Input text is required');
   }
 
-  // Try Claude first (if API key is configured)
+  // Priority order: Claude → OpenAI → Hugging Face → Gemini → Fallback
+  
+  // Try Claude first (premium quality)
   try {
     console.log('Attempting RectifAI Claude Sonnet 4 correction...');
     return await correctTextWithClaude(input);
   } catch (error) {
     console.log('RectifAI Claude Sonnet 4 failed:', error instanceof Error ? error.message : 'Unknown error');
-    
-    // If Claude fails due to missing API key, try Gemini
-    try {
-      console.log('Attempting Gemini API correction...');
-      const geminiResult = await correctTextWithGemini(input);
-      return {
-        corrected: geminiResult.corrected,
-        confidence: geminiResult.confidence,
-        changes: {
-          total: countDifferences(input, geminiResult.corrected),
-          types: geminiResult.changes
-        }
-      };
-    } catch (geminiError) {
-      console.log('RectifAI Gemini API failed:', geminiError instanceof Error ? geminiError.message : 'Unknown error');
-      
-      // If both APIs fail, use fallback correction
-      console.log('Using fallback correction system...');
-      return await correctTextWithFallback(input);
-    }
   }
+  
+  // Try OpenAI (good quality, has free tier)
+  try {
+    console.log('Attempting OpenAI GPT-3.5 correction...');
+    return await correctTextWithOpenAI(input);
+  } catch (error) {
+    console.log('OpenAI API failed:', error instanceof Error ? error.message : 'Unknown error');
+  }
+  
+  // Try Hugging Face (free with API key)
+  try {
+    console.log('Attempting Hugging Face correction...');
+    return await correctTextWithHuggingFace(input);
+  } catch (error) {
+    console.log('Hugging Face API failed:', error instanceof Error ? error.message : 'Unknown error');
+  }
+  
+  // Try Gemini (free tier available)
+  try {
+    console.log('Attempting Gemini API correction...');
+    const geminiResult = await correctTextWithGemini(input);
+    return {
+      corrected: geminiResult.corrected,
+      confidence: geminiResult.confidence,
+      changes: {
+        total: countDifferences(input, geminiResult.corrected),
+        types: geminiResult.changes
+      }
+    };
+  } catch (error) {
+    console.log('Gemini API failed:', error instanceof Error ? error.message : 'Unknown error');
+  }
+  
+  // Use fallback correction as last resort
+  console.log('Using fallback correction system...');
+  return await correctTextWithFallback(input);
 }
 
 function countDifferences(str1: string, str2: string): number {
