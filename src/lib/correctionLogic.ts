@@ -10,50 +10,77 @@ export async function correctText(input: string): Promise<CorrectionResult> {
     throw new Error('Input text is required');
   }
 
-  // Priority order: Claude → OpenAI → Hugging Face → Gemini → Fallback
-  
+  console.log('Starting RectifAI correction process...');
+
+  // Check which APIs are available
+  const hasClaudeKey = !!import.meta.env.CLAUDE_API_KEY;
+  const hasOpenAIKey = !!import.meta.env.VITE_OPENAI_API_KEY;
+  const hasHuggingFaceKey = !!import.meta.env.VITE_HUGGINGFACE_API_KEY;
+  const hasGeminiKey = !!import.meta.env.VITE_GEMINI_API_KEY;
+
+  console.log('Available APIs:', {
+    claude: hasClaudeKey,
+    openai: hasOpenAIKey,
+    huggingface: hasHuggingFaceKey,
+    gemini: hasGeminiKey
+  });
+
+  // If no APIs are configured, use fallback immediately
+  if (!hasClaudeKey && !hasOpenAIKey && !hasHuggingFaceKey && !hasGeminiKey) {
+    console.log('No AI APIs configured, using RectifAI fallback system...');
+    return await correctTextWithFallback(input);
+  }
+
   // Try Claude first (premium quality)
-  try {
-    console.log('Attempting RectifAI Claude Sonnet 4 correction...');
-    return await correctTextWithClaude(input);
-  } catch (error) {
-    console.log('RectifAI Claude Sonnet 4 failed:', error instanceof Error ? error.message : 'Unknown error');
+  if (hasClaudeKey) {
+    try {
+      console.log('Attempting RectifAI Claude Sonnet 4 correction...');
+      return await correctTextWithClaude(input);
+    } catch (error) {
+      console.log('RectifAI Claude Sonnet 4 failed:', error instanceof Error ? error.message : 'Unknown error');
+    }
   }
   
   // Try OpenAI (good quality, has free tier)
-  try {
-    console.log('Attempting OpenAI GPT-3.5 correction...');
-    return await correctTextWithOpenAI(input);
-  } catch (error) {
-    console.log('OpenAI API failed:', error instanceof Error ? error.message : 'Unknown error');
+  if (hasOpenAIKey) {
+    try {
+      console.log('Attempting OpenAI GPT-3.5 correction...');
+      return await correctTextWithOpenAI(input);
+    } catch (error) {
+      console.log('OpenAI API failed:', error instanceof Error ? error.message : 'Unknown error');
+    }
   }
   
   // Try Hugging Face (free with API key)
-  try {
-    console.log('Attempting Hugging Face correction...');
-    return await correctTextWithHuggingFace(input);
-  } catch (error) {
-    console.log('Hugging Face API failed:', error instanceof Error ? error.message : 'Unknown error');
+  if (hasHuggingFaceKey) {
+    try {
+      console.log('Attempting Hugging Face correction...');
+      return await correctTextWithHuggingFace(input);
+    } catch (error) {
+      console.log('Hugging Face API failed:', error instanceof Error ? error.message : 'Unknown error');
+    }
   }
   
   // Try Gemini (free tier available)
-  try {
-    console.log('Attempting Gemini API correction...');
-    const geminiResult = await correctTextWithGemini(input);
-    return {
-      corrected: geminiResult.corrected,
-      confidence: geminiResult.confidence,
-      changes: {
-        total: countDifferences(input, geminiResult.corrected),
-        types: geminiResult.changes
-      }
-    };
-  } catch (error) {
-    console.log('Gemini API failed:', error instanceof Error ? error.message : 'Unknown error');
+  if (hasGeminiKey) {
+    try {
+      console.log('Attempting Gemini API correction...');
+      const geminiResult = await correctTextWithGemini(input);
+      return {
+        corrected: geminiResult.corrected,
+        confidence: geminiResult.confidence,
+        changes: {
+          total: countDifferences(input, geminiResult.corrected),
+          types: geminiResult.changes
+        }
+      };
+    } catch (error) {
+      console.log('Gemini API failed:', error instanceof Error ? error.message : 'Unknown error');
+    }
   }
   
   // Use fallback correction as last resort
-  console.log('Using fallback correction system...');
+  console.log('All AI APIs failed or unavailable, using RectifAI fallback system...');
   return await correctTextWithFallback(input);
 }
 

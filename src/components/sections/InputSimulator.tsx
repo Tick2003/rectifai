@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../ui/Button';
-import { Ghost, AlertCircle, CheckCircle2, Brain, Zap, Globe, AlertTriangle } from 'lucide-react';
+import { Ghost, AlertCircle, CheckCircle2, Brain, Zap, Globe, AlertTriangle, Cpu } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { correctText } from '../../lib/correctionLogic';
 import type { CorrectionResult } from '../../types';
@@ -50,38 +50,35 @@ const InputSimulator: React.FC = () => {
       const result = await correctText(input);
       console.log('RectifAI correction completed:', result);
       
-      // Step 2: Save input to Supabase
-      const { data: submission, error: submissionError } = await supabase
-        .from('submissions')
-        .insert([
-          {
-            input_type: 'text',
-            input_content: input,
-            status: 'completed'
-          }
-        ])
-        .select()
-        .single();
+      // Step 2: Save input to Supabase (if available)
+      try {
+        const { data: submission, error: submissionError } = await supabase
+          .from('submissions')
+          .insert([
+            {
+              input_type: 'text',
+              input_content: input,
+              status: 'completed'
+            }
+          ])
+          .select()
+          .single();
 
-      if (submissionError) {
-        console.error('Supabase submission error:', submissionError);
-        throw submissionError;
-      }
-
-      // Step 3: Save correction
-      const { error: correctionError } = await supabase
-        .from('corrections')
-        .insert([
-          {
-            submission_id: submission.id,
-            corrected_content: result.corrected,
-            verified: result.confidence > 0.8
-          }
-        ]);
-
-      if (correctionError) {
-        console.error('Supabase correction error:', correctionError);
-        throw correctionError;
+        if (!submissionError && submission) {
+          // Step 3: Save correction
+          await supabase
+            .from('corrections')
+            .insert([
+              {
+                submission_id: submission.id,
+                corrected_content: result.corrected,
+                verified: result.confidence > 0.8
+              }
+            ]);
+        }
+      } catch (dbError) {
+        console.log('Database save failed (non-critical):', dbError);
+        // Continue with the correction even if database save fails
       }
 
       // Step 4: Update UI
@@ -95,9 +92,9 @@ const InputSimulator: React.FC = () => {
       
       if (error instanceof Error) {
         if (error.message.includes('API key')) {
-          errorMessage = 'RectifAI API configuration issue. Please check your API keys.';
+          errorMessage = 'RectifAI API configuration issue. Using fallback system.';
         } else if (error.message.includes('quota')) {
-          errorMessage = 'RectifAI API quota exceeded. Please try again later.';
+          errorMessage = 'RectifAI API quota exceeded. Using fallback system.';
         } else if (error.message.includes('safety')) {
           errorMessage = 'Content blocked by RectifAI safety filters. Please try different text.';
         } else {
@@ -111,8 +108,12 @@ const InputSimulator: React.FC = () => {
     }
   };
 
-  // Check if Claude API is configured
-  const isClaudeConfigured = !!import.meta.env.VITE_SUPABASE_URL;
+  // Check API configuration status
+  const hasClaudeKey = !!import.meta.env.CLAUDE_API_KEY;
+  const hasOpenAIKey = !!import.meta.env.VITE_OPENAI_API_KEY;
+  const hasHuggingFaceKey = !!import.meta.env.VITE_HUGGINGFACE_API_KEY;
+  const hasGeminiKey = !!import.meta.env.VITE_GEMINI_API_KEY;
+  const hasAnyAPI = hasClaudeKey || hasOpenAIKey || hasHuggingFaceKey || hasGeminiKey;
 
   return (
     <section id="simulator" className="py-24 bg-black">
@@ -122,17 +123,29 @@ const InputSimulator: React.FC = () => {
             Try RectifAI Universal Correction
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-sm">
-            Experience the most advanced AI correction powered by Claude Sonnet 4 that fixes everything - grammar, logic, facts, style, tone, structure, and more.
+            Experience advanced AI correction that fixes everything - grammar, logic, facts, style, tone, structure, and more.
           </p>
           
           {/* RectifAI Status Indicator */}
-          <div className="mb-6 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/30 rounded-lg p-4 max-w-2xl mx-auto">
-            <div className="flex items-center justify-center text-blue-300">
-              <Brain size={16} className="mr-2" />
+          <div className={`mb-6 border rounded-lg p-4 max-w-2xl mx-auto ${
+            hasAnyAPI 
+              ? 'bg-gradient-to-r from-blue-900/30 to-purple-900/30 border-blue-500/30' 
+              : 'bg-gradient-to-r from-orange-900/30 to-yellow-900/30 border-orange-500/30'
+          }`}>
+            <div className={`flex items-center justify-center ${hasAnyAPI ? 'text-blue-300' : 'text-orange-300'}`}>
+              {hasAnyAPI ? <Brain size={16} className="mr-2" /> : <Cpu size={16} className="mr-2" />}
               <span className="text-sm">
-                Powered by RectifAI - Next-Generation AI Correction Engine
+                {hasAnyAPI 
+                  ? 'Powered by RectifAI - Advanced AI Correction Engine' 
+                  : 'RectifAI Fallback Mode - Enhanced Rule-Based Correction'
+                }
               </span>
             </div>
+            {!hasAnyAPI && (
+              <p className="text-xs text-orange-400 mt-2">
+                Add API keys for premium AI correction (OpenAI, Hugging Face, or Gemini)
+              </p>
+            )}
           </div>
           
           {/* Advanced Correction Capabilities */}
@@ -208,7 +221,7 @@ const InputSimulator: React.FC = () => {
               <textarea
                 id="input"
                 className="w-full h-80 bg-gray-900 border border-gray-800 rounded-lg p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-sm"
-                placeholder="Paste any content here - writing, code, business documents, creative content, technical documentation, or anything else. RectifAI will fix everything that needs improvement with superior AI intelligence."
+                placeholder="Paste any content here - writing, code, business documents, creative content, technical documentation, or anything else. RectifAI will fix everything that needs improvement with superior intelligence."
                 value={input}
                 onChange={handleInputChange}
               />
@@ -262,7 +275,12 @@ const InputSimulator: React.FC = () => {
                     <AlertCircle size={14} className="mr-2 mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="mb-2 text-xs">RectifAI perfected output will appear here</p>
-                      <p className="text-xs">Advanced Fixes: Grammar, Logic, Facts, Style, Tone, Structure, Clarity, Professional Enhancement, and more</p>
+                      <p className="text-xs">
+                        {hasAnyAPI 
+                          ? 'Advanced AI Fixes: Grammar, Logic, Facts, Style, Tone, Structure, Clarity, Professional Enhancement, and more'
+                          : 'Enhanced Rule-Based Fixes: Grammar, Spelling, Punctuation, Style, Professional Language, and Structure'
+                        }
+                      </p>
                     </div>
                   </div>
                 )}
@@ -272,7 +290,12 @@ const InputSimulator: React.FC = () => {
                       <div className="w-12 h-12 border-t-2 border-b-2 border-blue-400 rounded-full animate-spin mb-3"></div>
                       <span className="text-gray-400 text-xs text-center">
                         RectifAI analyzing and perfecting everything...<br />
-                        <span className="text-xs text-gray-500">Advanced Grammar • Superior Logic • Verified Facts • Professional Style • Cultural Context</span>
+                        <span className="text-xs text-gray-500">
+                          {hasAnyAPI 
+                            ? 'Advanced Grammar • Superior Logic • Verified Facts • Professional Style • Cultural Context'
+                            : 'Enhanced Grammar • Spelling Correction • Professional Language • Structure Optimization'
+                          }
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -285,7 +308,7 @@ const InputSimulator: React.FC = () => {
                       <p className="text-xs">{error}</p>
                       {error.includes('API') && (
                         <p className="text-xs text-gray-500 mt-2">
-                          Check your RectifAI API configuration
+                          Check your RectifAI API configuration or use fallback mode
                         </p>
                       )}
                     </div>
@@ -297,7 +320,7 @@ const InputSimulator: React.FC = () => {
                     <div className="border-t border-gray-800 pt-3">
                       <div className="flex items-center text-xs text-blue-400 mb-2">
                         <CheckCircle2 size={12} className="mr-1.5" />
-                        Universally Perfected by RectifAI
+                        {hasAnyAPI ? 'Universally Perfected by RectifAI' : 'Enhanced by RectifAI Fallback System'}
                       </div>
                       {correctionResult && (
                         <div className="flex flex-wrap gap-2">
@@ -328,10 +351,16 @@ const InputSimulator: React.FC = () => {
           {/* RectifAI Universal Correction Info */}
           <div className="mt-8 text-center">
             <p className="text-gray-500 text-xs">
-              RectifAI analyzes and perfects: Language • Logic • Facts • Style • Tone • Structure • Clarity • Context • Culture • Professionalism • Technical Accuracy
+              {hasAnyAPI 
+                ? 'RectifAI analyzes and perfects: Language • Logic • Facts • Style • Tone • Structure • Clarity • Context • Culture • Professionalism • Technical Accuracy'
+                : 'RectifAI Fallback enhances: Grammar • Spelling • Punctuation • Professional Language • Structure • Formatting • Clarity'
+              }
             </p>
             <p className="text-blue-400 text-xs mt-2">
-              Powered by Claude Sonnet 4 - The most advanced AI correction system
+              {hasAnyAPI 
+                ? 'Powered by Advanced AI - The most sophisticated correction system'
+                : 'Enhanced Rule-Based System - Reliable correction without API dependencies'
+              }
             </p>
           </div>
         </div>
