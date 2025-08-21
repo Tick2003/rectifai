@@ -18,7 +18,7 @@ export async function correctTextWithPerplexity(input: string): Promise<Correcti
     const response = await fetch(PERPLEXITY_API_URL, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
+        'Authorization': `Bearer ${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}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
