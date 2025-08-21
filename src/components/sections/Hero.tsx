@@ -186,7 +186,7 @@ const Hero: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center bg-gray-800/80 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm border border-gray-700">
             <Brain size={14} className="text-blue-400 mr-2" />
-            <span className="text-gray-300 text-xs">Powered by Claude Sonnet 4 AI</span>
+            <span className="text-gray-300 text-xs">Powered by Perplexity AI</span>
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-6 leading-tight">

@@ -109,11 +109,11 @@ const InputSimulator: React.FC = () => {
   };
 
   // Check API configuration status
-  const hasClaudeKey = !!import.meta.env.CLAUDE_API_KEY;
+  const hasPerplexityKey = !!import.meta.env.VITE_PERPLEXITY_API_KEY;
   const hasOpenAIKey = !!import.meta.env.VITE_OPENAI_API_KEY;
   const hasHuggingFaceKey = !!import.meta.env.VITE_HUGGINGFACE_API_KEY;
   const hasGeminiKey = !!import.meta.env.VITE_GEMINI_API_KEY;
-  const hasAnyAPI = hasClaudeKey || hasOpenAIKey || hasHuggingFaceKey || hasGeminiKey;
+  const hasAnyAPI = hasPerplexityKey || hasOpenAIKey || hasHuggingFaceKey || hasGeminiKey;
 
   return (
     <section id="simulator" className="py-24 bg-black">

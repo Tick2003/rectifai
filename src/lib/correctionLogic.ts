@@ -1,4 +1,4 @@
-import { correctTextWithClaude } from './claude';
+import { correctTextWithPerplexity } from './perplexity';
 import { correctTextWithGemini } from './gemini';
 import { correctTextWithHuggingFace } from './huggingface';
 import { correctTextWithOpenAI } from './openai';
@@ -13,31 +13,31 @@ export async function correctText(input: string): Promise<CorrectionResult> {
   console.log('Starting RectifAI correction process...');
 
   // Check which APIs are available
-  const hasClaudeKey = !!import.meta.env.CLAUDE_API_KEY;
+  const hasPerplexityKey = !!import.meta.env.VITE_PERPLEXITY_API_KEY;
   const hasOpenAIKey = !!import.meta.env.VITE_OPENAI_API_KEY;
   const hasHuggingFaceKey = !!import.meta.env.VITE_HUGGINGFACE_API_KEY;
   const hasGeminiKey = !!import.meta.env.VITE_GEMINI_API_KEY;
 
   console.log('Available APIs:', {
-    claude: hasClaudeKey,
+    perplexity: hasPerplexityKey,
     openai: hasOpenAIKey,
     huggingface: hasHuggingFaceKey,
     gemini: hasGeminiKey
   });
 
   // If no APIs are configured, use fallback immediately
-  if (!hasClaudeKey && !hasOpenAIKey && !hasHuggingFaceKey && !hasGeminiKey) {
+  if (!hasPerplexityKey && !hasOpenAIKey && !hasHuggingFaceKey && !hasGeminiKey) {
     console.log('No AI APIs configured, using RectifAI fallback system...');
     return await correctTextWithFallback(input);
   }
 
-  // Try Claude first (premium quality)
-  if (hasClaudeKey) {
+  // Try Perplexity first (premium quality)
+  if (hasPerplexityKey) {
     try {
-      console.log('Attempting RectifAI Claude Sonnet 4 correction...');
-      return await correctTextWithClaude(input);
+      console.log('Attempting RectifAI Perplexity correction...');
+      return await correctTextWithPerplexity(input);
     } catch (error) {
-      console.log('RectifAI Claude Sonnet 4 failed:', error instanceof Error ? error.message : 'Unknown error');
+      console.log('RectifAI Perplexity failed:', error instanceof Error ? error.message : 'Unknown error');
     }
   }
   
