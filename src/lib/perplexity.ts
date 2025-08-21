@@ -1,6 +1,6 @@
 import { type CorrectionResult } from '../types';
 
-const PERPLEXITY_API_KEY = import.meta.env.VITE_PERPLEXITY_API_KEY;
+const PERPLEXITY_API_KEY = import.meta.env.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;
 const PERPLEXITY_API_URL = 'https://api.perplexity.ai/chat/completions';
 
 export async function correctTextWithPerplexity(input: string): Promise<CorrectionResult> {
