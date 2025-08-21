@@ -186,7 +186,7 @@ const Hero: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center bg-gray-800/80 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm border border-gray-700">
             <Brain size={14} className="text-blue-400 mr-2" />
-            <span className="text-gray-300 text-xs">Powered by Perplexity AI</span>
+            <span className="text-gray-300 text-xs">Advanced AI Correction</span>
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-6 leading-tight">
@@ -210,7 +210,7 @@ const Hero: React.FC = () => {
           </h1>
           
           <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
-            The world's most comprehensive AI correction system powered by Claude Sonnet 4. RectifAI fixes grammar, logic, facts, 
+            The world's most comprehensive AI correction system. RectifAI fixes grammar, logic, facts, 
             style, tone, structure, clarity, professionalism, and everything else across all domains.
           </p>
           
